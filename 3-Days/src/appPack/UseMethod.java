@@ -14,5 +14,8 @@ public class UseMethod {
         }
         System.out.println( sm );
 
+        String space = ac.spaceParams("Adres-1", "Adres-2",  "Adres-3", "Adres-4");
+        System.out.println( space );
+
     }
 }

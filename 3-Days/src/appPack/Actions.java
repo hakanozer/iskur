@@ -45,6 +45,28 @@ public class Actions {
         return a + b;
     }
 
+    // array fnc
+    public int arrFnc( int a, String[] arr ) {
+        int sum = arr.length + a;
+        return sum;
+    }
+
+    // sonsuz tek tür parametre
+    public String spaceParams( String... datas ) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < datas.length; i++) {
+            if ( i != datas.length - 1 ) {
+                //stData += datas[i] + " "; // stData = stData + item;
+                sb.append(datas[i]);
+                sb.append(" ");
+            }else {
+                sb.append(datas[i]);
+                //stData += datas[i]; // stData = stData + item;
+            }
+        }
+        return sb.toString();
+    }
+
 
 
 }
