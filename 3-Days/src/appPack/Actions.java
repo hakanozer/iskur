@@ -1,6 +1,15 @@
 package appPack;
 
+import java.util.Random;
+
 public class Actions {
+
+    public Actions() {
+        System.out.println(num);
+    }
+
+    int num = 10;
+    Random rd = new Random();
 
     // parametreli
     // parametresiz
