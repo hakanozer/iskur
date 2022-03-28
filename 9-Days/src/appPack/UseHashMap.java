@@ -58,6 +58,18 @@ public class UseHashMap {
         // girişler bittikten sonra liste içindeki tüm ürünleri detayları liste olarak yazdırılacaktır.
 
         Product pr = new Product();
-        pr.call();
+        //pr.call();
+
+
+        // Sıralama algoritmasının önemli olduğu durumlarda
+        Map<String, String> hmLinked = new LinkedHashMap<>();
+        hmLinked.put("name", "Ali");
+        hmLinked.put("surname", "Bilmem");
+        hmLinked.put("age", "30");
+        hmLinked.put("email", "ali@mail.com");
+        hmLinked.put("status", "true");
+        hmLinked.put("name", "Ahmet");
+        System.out.println( hmLinked );
+
     }
 }
