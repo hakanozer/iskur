@@ -4,10 +4,11 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {space :::p, par l {comp txtData::::386:x, seq l {space :p:6:p, comp label1::::286:x, space :::p, comp btnLogin:::p:88:p}}, space :::p}}"
-			"$verticalGroup": "par l {seq l {space :p:23:p, comp txtData:::p::p, space :::p, par b {comp btnLogin::b:p::p, comp label1::b:p::p}, space ::187:x}}"
+			"$horizontalGroup": "par l {seq {space :::p, par l {comp txtData::::386:x, seq l {space :p:6:p, comp lblData::::286:x, space :::p, comp btnLogin:::p:88:p}}, space :::p}}"
+			"$verticalGroup": "par l {seq l {space :p:23:p, comp txtData:::p::p, space :::p, par b {comp btnLogin::b:p::p, comp lblData::b:p::p}, space ::187:x}}"
 		} ) {
 			name: "this"
+			"defaultCloseOperation": 2
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "btnLogin"
 				"text": "text"
@@ -17,7 +18,7 @@ new FormModel {
 				name: "txtData"
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label1"
+				name: "lblData"
 				"text": "text"
 			} )
 		}, new FormLayoutConstraints( null ) {

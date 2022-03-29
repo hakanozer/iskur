@@ -28,6 +28,7 @@ public class UserLogin extends JFrame {
     private void loginBtnClick(ActionEvent e) {
         String data = txtData.getText();
         System.out.println("login Btn Call " + data);
+        lblData.setText( data );
         String title = btnLogin.getText();
         if ( status ) {
             btnLogin.setText("Giriş Yap");
@@ -42,17 +43,18 @@ public class UserLogin extends JFrame {
         // Generated using JFormDesigner Evaluation license - unknown
         btnLogin = new JButton();
         txtData = new JTextField();
-        label1 = new JLabel();
+        lblData = new JLabel();
 
         //======== this ========
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         Container contentPane = getContentPane();
 
         //---- btnLogin ----
         btnLogin.setText("text");
         btnLogin.addActionListener(e -> loginBtnClick(e));
 
-        //---- label1 ----
-        label1.setText("text");
+        //---- lblData ----
+        lblData.setText("text");
 
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
@@ -64,7 +66,7 @@ public class UserLogin extends JFrame {
                         .addComponent(txtData, GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
                         .addGroup(contentPaneLayout.createSequentialGroup()
                             .addGap(6, 6, 6)
-                            .addComponent(label1, GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
+                            .addComponent(lblData, GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)))
                     .addContainerGap())
@@ -77,7 +79,7 @@ public class UserLogin extends JFrame {
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(btnLogin)
-                        .addComponent(label1))
+                        .addComponent(lblData))
                     .addContainerGap(187, Short.MAX_VALUE))
         );
         pack();
@@ -89,6 +91,6 @@ public class UserLogin extends JFrame {
     // Generated using JFormDesigner Evaluation license - unknown
     private JButton btnLogin;
     private JTextField txtData;
-    private JLabel label1;
+    private JLabel lblData;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
