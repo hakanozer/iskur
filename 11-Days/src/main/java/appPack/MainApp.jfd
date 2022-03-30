@@ -4,19 +4,49 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq t {space :::p, comp scrollPane1::::386:x, space :::p}}"
-			"$verticalGroup": "par l {seq l {space :::p, comp scrollPane1::::264:x, space :::p}}"
+			"$horizontalGroup": "par l {seq {space :::p, par l {seq l {par l {seq l {comp txtTitle:::p:234:p, space s:::x}, seq {comp txtColor:::::x, space :p:18:p}}, par l {comp txtHp::::234:x, comp txtKm::::234:x}}, seq t {space :0:163:x, comp button3:::p::p, space s:::p, comp button2:::p::p, space u:::p, comp button1:::p:137:p}, comp scrollPane1::t::486:x}, space :::p}}"
+			"$verticalGroup": "par l {seq t {space :::p, par b {comp txtTitle::b:p::p, comp txtHp::b:p::p}, space :::p, par b {comp txtColor::b:p::p, comp txtKm::b:p::p}, space s:::p, par b {comp button1::b:p::p, comp button2::b:p::p, comp button3::b:p::p}, space u:::p, comp scrollPane1::::188:x, space :::p}}"
 		} ) {
 			name: "this"
+			"resizable": false
 			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 				name: "scrollPane1"
 				add( new FormComponent( "javax.swing.JTable" ) {
 					name: "tblCars"
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "tblCarsMouseClicked", true ) )
+					addEvent( new FormEvent( "java.awt.event.KeyListener", "keyReleased", "tblCarsKeyReleased", true ) )
 				} )
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "txtTitle"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "txtHp"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "txtColor"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "txtKm"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"text": "Add"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "addBtnClick", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button2"
+				"text": "Delete"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnDeleteClick", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button3"
+				"text": "Delete All"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnDeleteAll", true ) )
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 400, 300 )
+			"size": new java.awt.Dimension( 500, 350 )
 		} )
 	}
 }

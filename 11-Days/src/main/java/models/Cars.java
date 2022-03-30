@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class Cars {
 
-    private List<Car> cars = new ArrayList<>();
+    List<Car> cars = new ArrayList<>();
     String[] arrColor = {"Black", "Red", "Green", "Gray", "Blue", "Purple", "Yellow"};
 
     public List<Car> carsResult() {
