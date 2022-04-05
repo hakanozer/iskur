@@ -33,5 +33,16 @@ public class DB {
     }
 
 
+    // db close
+    public void close() {
+        try {
+            if ( !conn.isClosed() ) {
+                conn.close();
+            }
+        }catch (Exception ex) {
+            System.err.println("close Error : "+ ex);
+        }
+    }
+
 
 }

@@ -10,7 +10,8 @@ public interface IUser {
     int userUpdate( User user );
     int userDelete( int uid );
     List<User> userList();
-
+    boolean userLogin(String email, String password);
+    User userSingle( int uid );
 
 
 }
