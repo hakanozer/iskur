@@ -5,6 +5,8 @@
 package views;
 
 import java.awt.event.*;
+
+import models.ServiceImpl;
 import models.UserImpl;
 
 import java.awt.*;
@@ -16,9 +18,12 @@ import javax.swing.GroupLayout;
  */
 public class Services extends Base {
 
+    ServiceImpl service = new ServiceImpl();
+
     public Services() {
         initComponents();
         lblName.setText( "Sn." + UserImpl.name );
+        tblCustomer.setModel( service.serviceCustomerTable(null) );
     }
 
     private void thisWindowClosing(WindowEvent e) {
@@ -29,15 +34,20 @@ public class Services extends Base {
         // TODO add your code here
     }
 
+    private void txtCustomerSearchKeyReleased(KeyEvent e) {
+        String txtSearch = txtCustomerSearch.getText().trim();
+        tblCustomer.setModel(  service.serviceCustomerTable( txtSearch ) );
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - unknown
         label1 = new JLabel();
         lblName = new JLabel();
         label3 = new JLabel();
-        textField1 = new JTextField();
+        txtCustomerSearch = new JTextField();
         scrollPane1 = new JScrollPane();
-        table1 = new JTable();
+        tblCustomer = new JTable();
         label4 = new JLabel();
         textField2 = new JTextField();
         textField3 = new JTextField();
@@ -70,9 +80,17 @@ public class Services extends Base {
         //---- label3 ----
         label3.setText("Customer Search");
 
+        //---- txtCustomerSearch ----
+        txtCustomerSearch.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                txtCustomerSearchKeyReleased(e);
+            }
+        });
+
         //======== scrollPane1 ========
         {
-            scrollPane1.setViewportView(table1);
+            scrollPane1.setViewportView(tblCustomer);
         }
 
         //---- label4 ----
@@ -107,7 +125,7 @@ public class Services extends Base {
                         .addGroup(contentPaneLayout.createSequentialGroup()
                             .addComponent(label3)
                             .addGap(18, 18, 18)
-                            .addComponent(textField1))
+                            .addComponent(txtCustomerSearch))
                         .addComponent(scrollPane1)
                         .addGroup(contentPaneLayout.createSequentialGroup()
                             .addComponent(label1, GroupLayout.PREFERRED_SIZE, 330, GroupLayout.PREFERRED_SIZE)
@@ -144,7 +162,7 @@ public class Services extends Base {
                     .addGap(18, 18, 18)
                     .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(label3)
-                        .addComponent(textField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtCustomerSearch, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
@@ -177,9 +195,9 @@ public class Services extends Base {
     private JLabel label1;
     private JLabel lblName;
     private JLabel label3;
-    private JTextField textField1;
+    private JTextField txtCustomerSearch;
     private JScrollPane scrollPane1;
-    private JTable table1;
+    private JTable tblCustomer;
     private JLabel label4;
     private JTextField textField2;
     private JTextField textField3;
