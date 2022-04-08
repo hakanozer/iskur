@@ -1,0 +1,77 @@
+JFDML JFormDesigner: "7.0.5.4.420" Java: "11.0.11" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {space :::p, par l {seq {comp label3:::p::p, space s:::p, comp textField1:::::x}, comp scrollPane1::l:::x, seq {comp label1:::p:330:p, space :p:30:p, comp lblName:::p:326:p}, seq l {par l {comp label6::l:p::p, comp label4::l:p::p}, space s:::p, par l {seq t {comp textField2:::p:282:p, space :::x, comp label5:::p::p, space :18:18:p, comp textField3:::p:291:p}, comp scrollPane2:::::x, comp lblError:::::x, seq l {comp button1:::p:48:p, space :0:0:x}}}}, space :::p}}"
+			"$verticalGroup": "par l {seq l {space :::p, par l {seq l {space :2:2:p, comp label1:::p::p}, comp lblName:::p:25:p}, space s:::p, par b {comp label3::b:p::p, comp textField1::b:p::p}, space :::p, comp scrollPane1:::p:104:p, space s:::p, par t {par b:t {comp label4::b:p::p, comp textField2::b:p::p}, par l:t {seq l {space :7:7:p, comp label5:::p::p}, comp textField3:::p::p}}, space u:::p, par b {comp label6::b:p::p, comp scrollPane2::b:p:40:p}, space u:::p, comp lblError:::p::p, space :::p, comp button1:::p::p, space ::123:x}}"
+		} ) {
+			name: "this"
+			"defaultCloseOperation": 2
+			"resizable": false
+			addEvent( new FormEvent( "java.awt.event.WindowListener", "windowClosing", "thisWindowClosing", true ) )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Technical Service"
+				"font": new java.awt.Font( "Arial", 0, 16 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblName"
+				"text": " "
+				"horizontalAlignment": 11
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "Customer Search"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textField1"
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "table1"
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label4"
+				"text": "Title"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textField2"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textField3"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label5"
+				"text": "Days"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label6"
+				"text": "Details"
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane2"
+				add( new FormComponent( "javax.swing.JTextArea" ) {
+					name: "textArea1"
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/add_icon.png" )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnCustomerAdd", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblError"
+				"text": " "
+				"foreground": new java.awt.Color( 244, 92, 92, 255 )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 700, 500 )
+		} )
+	}
+}
+
