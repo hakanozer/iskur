@@ -1,0 +1,47 @@
+JFDML JFormDesigner: "7.0.5.4.420" Java: "11.0.13" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {space :::p, par l:::p {seq l {comp lblService:::p:350:p, space :18:18:p, comp lblName:::p:230:p}, comp label2::l:p:124:p, comp txtCustomerSearch::l:::x, comp scrollPane1::l:p:598:p}, space ::19:x}}"
+			"$verticalGroup": "par l {seq l {space :::p, par l {comp lblService:::p:50:p, seq l {space :25:25:p, comp lblName:::p:25:p}}, space :::p, comp label2:::p::p, space :::p, comp txtCustomerSearch:::p::p, space :::p, comp scrollPane1:::p:140:p, space ::349:x}}"
+		} ) {
+			name: "this"
+			"resizable": false
+			addEvent( new FormEvent( "java.awt.event.WindowListener", "windowClosing", "thisWindowClosing", true ) )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblService"
+				"text": "Technical Service"
+				"font": new java.awt.Font( "Times New Roman", 1, 20 )
+				"foreground": new java.awt.Color( 33, 17, 17, 255 )
+				"horizontalAlignment": 0
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblName"
+				"text": " "
+				"font": new java.awt.Font( "Times New Roman", 2, 14 )
+				"horizontalAlignment": 4
+				"foreground": new java.awt.Color( 33, 17, 17, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "Customer Search"
+				"font": new java.awt.Font( "Times New Roman", 1, 16 )
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "txtCustomerSearch"
+				addEvent( new FormEvent( "java.awt.event.KeyListener", "keyReleased", "txtCustomerSearchKeyReleased", true ) )
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "tblArchive"
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 625, 645 )
+		} )
+	}
+}
