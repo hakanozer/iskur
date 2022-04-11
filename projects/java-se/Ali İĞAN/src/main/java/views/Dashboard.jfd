@@ -1,0 +1,67 @@
+JFDML JFormDesigner: "7.0.5.1.409" Java: "11.0.13" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :::p, par l {seq {comp lblName:::p:296:p, space s:::p, comp lblAdmin::::272:x}, seq l {comp btnAdd:::p:100:p, space :p:12:p, comp btnService:::p:100:p, space u:::p, comp btnArchive:::p:100:p, space s:::p, comp scrollPane3:::p:234:p, space :0:10:x}, comp panel2::l:::x, comp panel1::t:::x}, space :::p}}"
+			"$verticalGroup": "par l {seq l {space :::p, par l:::p {comp lblName:::::x, comp lblAdmin:::::x}, par l {seq {space :p:21:p, par t {comp btnArchive:::p:75:p, comp btnService::t:p:75:p, comp scrollPane3::t:p::p}}, seq t {space :::p, comp btnAdd:::p:75:p}}, space u:::p, comp panel1::::114:x, space :::p, comp panel2:::p:112:p, space :::p}}"
+		} ) {
+			name: "this"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblName"
+				"text": "TECHNICAL SERVICE"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblAdmin"
+				"text": "Administrator"
+				"horizontalAlignment": 4
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnAdd"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/addIcon.png" )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnService"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/service.png" )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnArchive"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/archive.png" )
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq l {space :::p, comp scrollPane1::::574:x, space :::p}}"
+				"$verticalGroup": "par l {seq t {space :::x, comp scrollPane1:::p:108:p, space :::p}}"
+			} ) {
+				name: "panel1"
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPane1"
+					add( new FormComponent( "javax.swing.JTable" ) {
+						name: "table1"
+					} )
+				} )
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq l {space :::p, comp scrollPane2::::574:x, space :::p}}"
+				"$verticalGroup": "par l {seq t {space :::x, comp scrollPane2:::p:106:p, space :::p}}"
+			} ) {
+				name: "panel2"
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPane2"
+					add( new FormComponent( "javax.swing.JTable" ) {
+						name: "table2"
+					} )
+				} )
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane3"
+				add( new FormComponent( "javax.swing.JTextPane" ) {
+					name: "textPane1"
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 45, 35 )
+			"size": new java.awt.Dimension( 600, 400 )
+		} )
+	}
+}
