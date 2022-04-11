@@ -1,0 +1,92 @@
+JFDML JFormDesigner: "7.0.5.4.420" Java: "11.0.13" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq t {space :::p, comp scrollPane1::::586:x, space :::p}, comp panel1::l:::x}"
+			"$verticalGroup": "par l {seq l {space :::p, comp panel1:::::x, space :::p, comp scrollPane1:::p:164:p, space :::p}}"
+		} ) {
+			name: "this"
+			addEvent( new FormEvent( "java.awt.event.WindowListener", "windowClosing", "thisWindowClosing", true ) )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq {space :::p, comp btnAdd:::p:84:p, space s:::p, comp btnUpdate:::p:84:p, space s:::p, comp btnDelete:::p:84:p, space s:::p, comp lblError:::p:246:p, space ::40:x}, seq {par t {seq {space :p:156:p, comp label6:::p:216:p, space :p:38:p, comp lblName:::p:163:p}, par t {seq l {space :p:36:p, par t {seq {comp label3:::p:55:p, space :6:6:p, comp txtEmail:::p:173:p}, seq {comp label1:::p:55:p, space :::p, comp txtName:::p:173:p}}, par l {seq {space :p:32:p, comp label2:::p:55:p, space :6:6:p, comp txtSurname:::p:173:p}, seq l {space :p:40:p, comp label4:::p:55:p, space :6:6:p, comp txtPhone:::p:173:p}}}, seq l {space :::p, comp label5:::p:55:p, space :::p, comp txtAddress:::::x}}}, space ::25:x}}"
+				"$verticalGroup": "par l {seq l {space :::p, par l:::p {comp label6::::32:x, comp lblName::::32:x}, space :::p, par t {par l {seq l {space :7:7:p, comp label2:::p::p}, comp txtSurname:::p::p}, par b {comp label1::b:p::p, comp txtName::b:p::p}}, space :p:45:p, par l {comp txtEmail:::p::p, comp txtPhone:::p::p, seq {space :7:7:p, par l {comp label3::l:p::p, comp label4::l:p::p}}}, space s:::p, par l {seq t {comp label5:::p::p, space :p:7:p}, comp txtAddress::t:p::p}, space :::p, par t {comp btnAdd:::p:60:p, comp btnUpdate:::p:60:p, comp btnDelete::t:p:60:p, comp lblError::t:p:50:p}, space ::23:x}}"
+			} ) {
+				name: "panel1"
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label1"
+					"text": "Name"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "txtName"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label2"
+					"text": "Surname"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "txtSurname"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label3"
+					"text": "E-Mail"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "txtEmail"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label4"
+					"text": "Phone"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "txtPhone"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label5"
+					"text": "Address"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "txtAddress"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "btnAdd"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/useradd.png" )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnAddclick", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "btnUpdate"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/updateicon.png" )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnUpdateClick", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "btnDelete"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/2303123_bin_delete_garbage_remove_trash_icon.png" )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnDeleteClick", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblError"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label6"
+					"text": "Technical Service"
+					"horizontalAlignment": 0
+					"font": new java.awt.Font( "Source Sans Pro", 1, 16 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblName"
+				} )
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "tblCustormer"
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "tblCustormerMouseClicked", true ) )
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 600, 500 )
+		} )
+	}
+}

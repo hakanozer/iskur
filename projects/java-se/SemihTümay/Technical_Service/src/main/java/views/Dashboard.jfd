@@ -1,0 +1,62 @@
+JFDML JFormDesigner: "7.0.5.4.420" Java: "11.0.13" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {space :::p, par l {seq l {par l:::p {seq {comp btnAddUser:::p:100:p, space s:::p, comp btnService:::p:100:p, space :p:18:p, comp btnArchive:::p:105:p}, seq {comp lblService:::p:350:p, space s:::p, comp lblName:::p:230:p}, comp scrollPane2::l:::x}, space :0:3:x}, comp scrollPane1::t::601:x}, space :::p}}"
+			"$verticalGroup": "par l {seq l {space :::p, par t {comp lblService:::p:50:p, comp lblName:::p:25:p}, space :::p, par l {comp btnService:::p:75:p, comp btnArchive:::p:75:p, comp btnAddUser:::p:75:p}, space u:::p, comp scrollPane1:::p:140:p, space :p:24:p, comp scrollPane2:::p:140:p, space ::90:x}}"
+		} ) {
+			name: "this"
+			"resizable": false
+			"defaultCloseOperation": 2
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblService"
+				"text": "Technical Service"
+				"font": new java.awt.Font( "Times New Roman", 1, 20 )
+				"foreground": new java.awt.Color( 33, 17, 17, 255 )
+				"horizontalAlignment": 0
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblName"
+				"text": " "
+				"font": new java.awt.Font( "Times New Roman", 2, 14 )
+				"horizontalAlignment": 4
+				"foreground": new java.awt.Color( 33, 17, 17, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnAddUser"
+				"toolTipText": "Add User"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/add_user.png" )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnAddCustomerClick", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnArchive"
+				"toolTipText": "Archive"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/archive.png" )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnArchiveClick", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnService"
+				"toolTipText": "Technical Service"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/service.png" )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnServicesClick", true ) )
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "tblNotComplieted"
+				} )
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane2"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "tblComplieted"
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 615, 575 )
+		} )
+	}
+}
