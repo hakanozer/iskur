@@ -1,0 +1,65 @@
+JFDML JFormDesigner: "7.0.5.4.420" Java: "11.0.13" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq t {space :::p, par t {comp scrollPane2::::796:x, seq l {comp label1:::::x, space s:::p, comp lblName:::p:266:p}, seq l {comp btnCustomerAdd:::p:103:p, space s:::p, comp btnServiceAdd:::p:103:p, space s:::p, comp btnArchive:::p:103:p, space ::299:x, comp txtSearch:::p:152:p}, comp scrollPane1::t::796:x}, space :::p}}"
+			"$verticalGroup": "par l {seq l {space :::p, par b {comp lblName::b:p:25:p, comp label1::b:p:25:p}, space s:::p, par l {comp btnServiceAdd:::p:103:p, comp btnCustomerAdd:::p:103:p, comp btnArchive:::p:103:p, comp txtSearch::t:p::p}, space s:::p, comp scrollPane1:::p:135:p, space s:::p, comp scrollPane2:::p:151:p, space ::33:x}}"
+		} ) {
+			name: "this"
+			"defaultCloseOperation": 2
+			"resizable": false
+			"iconImage": new com.jformdesigner.model.SwingIcon( 0, "/dashboardIcon.png" )
+			"title": "Tecnical Service"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblName"
+				"text": " "
+				"horizontalAlignment": 4
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Tecnical Service"
+				"font": new java.awt.Font( "Arial", 0, 12 )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnCustomerAdd"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/userAddIcon.png" )
+				"toolTipText": "Customer Add"
+				"focusable": false
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnCustomerAddClick", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnServiceAdd"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/Service.png" )
+				"toolTipText": "Service Add"
+				"focusable": false
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnServiceAddClick", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnArchive"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/archiveIcon.png" )
+				"toolTipText": "Archive"
+				"focusable": false
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "table1"
+				} )
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane2"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "table2"
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "txtSearch"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 810, 540 )
+		} )
+	}
+}

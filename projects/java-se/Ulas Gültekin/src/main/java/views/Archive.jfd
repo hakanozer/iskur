@@ -1,0 +1,40 @@
+JFDML JFormDesigner: "7.0.5.4.420" Java: "11.0.13" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :p:151:p, comp label8:::p:256:p, space ::35:x, comp lblName:::p:168:p, space :p:18:p}, seq l {space :::p, comp scrollPane1::::616:x, space :::p}, seq t {space :p:60:p, comp btnUpdate:::p::p, space ::340:x, comp btnDelete:::p::p, space :p:64:p}}"
+			"$verticalGroup": "par l {seq l {space :::p, par t {comp btnUpdate:::p:54:p, seq l {par t {comp lblName:::p:26:p, comp label8:::p:32:p}, space u:::p, comp scrollPane1:::p:192:p, space s:::p, comp btnDelete:::p:64:p}}, space ::54:x}}"
+		} ) {
+			name: "this"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label8"
+				"text": "TECHNIC SERVICE"
+				"horizontalAlignment": 0
+				"font": new java.awt.Font( "Segoe UI Black", 1, 26 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblName"
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "tblArchive"
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnDelete"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/2303123_bin_delete_garbage_remove_trash_icon.png" )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnDelete", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnUpdate"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/updateicon.png" )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 630, 410 )
+		} )
+	}
+}
