@@ -1,0 +1,145 @@
+JFDML JFormDesigner: "7.0.5.4.420" Java: "11.0.13" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "views.Base", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {space :p:21:p, par t {seq {comp label7:::p:61:p, space ::292:x, comp label1:::p:199:p, space :p:143:p, comp lblname:::p:142:p}, comp panel1::l:::x, seq {space :6:6:p, comp button1:::p:185:p, space :::x, comp button2:::p:185:p, space :p:135:p, comp button3:::p:185:p}, comp scrollPane2::l::837:x}, space :p:25:p}}"
+			"$verticalGroup": "par l {seq l {space :::p, par l {par b {comp label7::b:p:64:p, comp label1::b:p:27:p}, comp lblname::l:p::p}, space ::27:x, comp panel1:::p::p, space u:::p, par b {comp button1::b:p:47:p, comp button2::b:p:47:p, comp button3::b:p:47:p}, space s:::p, comp scrollPane2:::p:201:p, space :p:12:p}}"
+		} ) {
+			name: "this"
+			"defaultCloseOperation": 2
+			"maximizedBounds": new java.awt.Rectangle( 0, 0, 100, 135 )
+			addEvent( new FormEvent( "java.awt.event.WindowListener", "windowClosing", "thisWindowClosing", true ) )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Customer Managment"
+				"font": new java.awt.Font( "Segoe UI", 1, 18 )
+				"foreground": sfield java.awt.Color darkGray
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblname"
+				"text": "text"
+				"font": new java.awt.Font( "Segoe UI", 1, 14 )
+				"horizontalAlignment": 4
+				"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+				"foreground": sfield java.awt.Color darkGray
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq l {space :::p, par l {comp label4:::p:72:p, comp label2::l:p:66:p, comp label6::l:p:92:p}, space :::p, par l {seq {par l:::p {comp txtEmail::::264:x, comp txtName:::::x}, space :::x, par l {comp label3:::p:92:p, comp label5:::p:88:p}, space s:::p, par l:::p {comp txtSurname::::267:x, comp txtPhone:::::x}}, comp scrollPane1:::::x}, space :p:12:p}, seq t {space ::191:x, comp lblError:::p:487:p, space :p:147:p}}"
+				"$verticalGroup": "par l {seq l {space :::x, par l {par b:t {comp label2::b:p:30:p, comp txtName::b:p:38:p, comp txtSurname::b:p:38:p}, comp label3::t:p:29:p}, par l {seq l {space :p:13:p, comp label4:::p:34:p}, seq l {space s:::p, par b {comp txtEmail::b:p:36:p, comp txtPhone::b:p:39:p, comp label5::b:p:30:p}}}, space :p:23:p, par l {comp label6:::p:33:p, comp scrollPane1:::p:38:p}, space u:::p, comp lblError:::p:21:p, space :p:11:p}}"
+			} ) {
+				name: "panel1"
+				"border": new javax.swing.border.TitledBorder( new javax.swing.border.BevelBorder( 1, sfield java.awt.Color lightGray, sfield java.awt.Color gray, sfield java.awt.Color gray, sfield java.awt.Color lightGray ), "Customer Information", 4, 0, new java.awt.Font( "Segoe UI", 1, 16 ), sfield java.awt.Color darkGray )
+				"foreground": new java.awt.Color( 204, 204, 204, 255 )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "txtName"
+					"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 2, false )
+					addEvent( new FormEvent( "java.awt.event.KeyListener", "keyReleased", "txtNameKeyReleased", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "txtSurname"
+					"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 2, false )
+					addEvent( new FormEvent( "java.awt.event.KeyListener", "keyReleased", "txtSurnameKeyReleased", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label2"
+					"text": "Name"
+					"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 2, false )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label3"
+					"text": "Surname"
+					"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 2, false )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label4"
+					"text": "E-mail"
+					"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 2, false )
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "txtEmail"
+					"font": new java.awt.Font( "Segoe UI", 0, 14 )
+					addEvent( new FormEvent( "java.awt.event.KeyListener", "keyReleased", "txtEmailKeyReleased", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label5"
+					"text": "Phone"
+					"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 2, false )
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "txtPhone"
+					"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 2, false )
+					addEvent( new FormEvent( "java.awt.event.KeyListener", "keyReleased", "txtPhoneKeyReleased", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label6"
+					"text": "Addres"
+					"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 2, false )
+				} )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPane1"
+					add( new FormComponent( "javax.swing.JTextArea" ) {
+						name: "txtAddress"
+						"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 2, false )
+						addEvent( new FormEvent( "java.awt.event.KeyListener", "keyReleased", "txtAddressKeyReleased", true ) )
+					} )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblError"
+					"horizontalAlignment": 0
+					"foreground": sfield java.awt.Color red
+					"font": new java.awt.Font( "Segoe UI", 1, 16 )
+				} )
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane2"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "table1"
+					"selectionBackground": sfield java.awt.SystemColor inactiveCaption
+					"selectionForeground": new java.awt.Color( 0, 0, 0, 255 )
+					"font": new java.awt.Font( "Segoe UI", 0, 14 )
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "table1MouseReleased", true ) )
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"font": new java.awt.Font( "Segoe UI", 1, 18 )
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/3855641_add_icon.png" )
+				"border": new javax.swing.border.BevelBorder( 1, sfield java.awt.Color lightGray, sfield java.awt.Color gray, sfield java.awt.Color gray, sfield java.awt.Color lightGray )
+				"background": sfield java.awt.Color lightGray
+				"text": "Add"
+				"foreground": sfield java.awt.Color white
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnAddClick", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button2"
+				"font": new java.awt.Font( "Segoe UI", 1, 18 )
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/uptadeiconcustomer.png" )
+				"background": sfield java.awt.Color lightGray
+				"text": "Update"
+				"border": new javax.swing.border.BevelBorder( 1, sfield java.awt.Color lightGray, sfield java.awt.Color gray, sfield java.awt.Color gray, sfield java.awt.Color lightGray )
+				"foreground": sfield java.awt.Color white
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnUpdateClick", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button3"
+				"font": new java.awt.Font( "Segoe UI", 1, 18 )
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/3855611_bin_garbage_trash_icon.png" )
+				"background": sfield java.awt.Color lightGray
+				"text": "Delete"
+				"border": new javax.swing.border.BevelBorder( 1, sfield java.awt.Color lightGray, sfield java.awt.Color gray, sfield java.awt.Color gray, sfield java.awt.Color lightGray )
+				"foreground": sfield java.awt.Color white
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnDeleteClick", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label7"
+				"text": "text"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/Customeradd.png" )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 885, 655 )
+		} )
+	}
+}

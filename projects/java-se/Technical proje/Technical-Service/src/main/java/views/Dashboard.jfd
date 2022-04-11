@@ -1,0 +1,101 @@
+JFDML JFormDesigner: "7.0.5.4.420" Java: "11.0.13" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "views.Base", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :p:18:p, par l {seq {comp panel1:::::x, space :::p}, seq t {comp label1:::::x, space :::p, comp lblname:::p:180:p, space :p:30:p}, seq t {comp button1:::p:91:p, space s:::p, comp button2:::p:91:p, space s:::p, comp button3:::p:104:p, space :p:95:p, comp label2:::p::p, space s:::p, comp txtSearch:::p:312:p, space :0:21:x}, seq l {comp panel2:::::x, space :::p}}}}"
+			"$verticalGroup": "par l {seq l {space :::p, par b {comp label1::b:p:27:p, comp lblname::b:p::p}, space :p:24:p, par l {par l {par b:t {comp txtSearch::b:p:41:p, comp label2::b:p::p}, comp button1::t:p:69:p, comp button2::t:p:69:p}, comp button3:::p::p}, space u:::p, comp panel1:::p::p, space :::p, comp panel2:::p::p, space :::x}}"
+		} ) {
+			name: "this"
+			"defaultCloseOperation": 0
+			"maximizedBounds": new java.awt.Rectangle( 0, 0, 100, 135 )
+			addEvent( new FormEvent( "java.awt.event.WindowListener", "windowClosing", "thisWindowClosing", true ) )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblname"
+				"text": "text"
+				"font": new java.awt.Font( "Segoe UI", 1, 14 )
+				"horizontalAlignment": 4
+				"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+				"foreground": sfield java.awt.Color darkGray
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Technical Service "
+				"font": new java.awt.Font( "Segoe UI", 1, 20 )
+				"foreground": sfield java.awt.Color darkGray
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/CustomerAdd.png" )
+				"background": sfield java.awt.Color lightGray
+				"toolTipText": "Müşteri Ekle"
+				"focusable": false
+				"border": new javax.swing.border.BevelBorder( 1, sfield java.awt.Color lightGray, sfield java.awt.Color lightGray, sfield java.awt.Color gray, sfield java.awt.Color lightGray )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button1AddCustomerClick", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button2"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/settings.png" )
+				"background": sfield java.awt.Color lightGray
+				"toolTipText": "Servis Ekle"
+				"focusable": false
+				"border": new javax.swing.border.BevelBorder( 1, sfield java.awt.Color lightGray, sfield java.awt.Color lightGray, sfield java.awt.Color gray, sfield java.awt.Color lightGray )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnServiceClick", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button3"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/folder.png" )
+				"background": sfield java.awt.Color lightGray
+				"toolTipText": "Arşiv"
+				"focusable": false
+				"border": new javax.swing.border.BevelBorder( 1, sfield java.awt.Color lightGray, sfield java.awt.Color lightGray, sfield java.awt.Color gray, sfield java.awt.Color lightGray )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "bntArchieveClick", true ) )
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq l {comp scrollPane1:::::x, space :::p}}"
+				"$verticalGroup": "par l {seq t {space :::x, comp scrollPane1:::p:168:p, space :::p}}"
+			} ) {
+				name: "panel1"
+				"border": new javax.swing.border.TitledBorder( new javax.swing.border.BevelBorder( 1, sfield java.awt.Color lightGray, sfield java.awt.Color lightGray, sfield java.awt.Color gray, sfield java.awt.Color lightGray ), "Open Work Orders", 4, 0, new java.awt.Font( "Segoe UI", 1, 14 ), sfield java.awt.Color darkGray )
+				"background": sfield java.awt.Color lightGray
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPane1"
+					add( new FormComponent( "javax.swing.JTable" ) {
+						name: "tblRepair"
+						"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 2, false )
+					} )
+				} )
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq l {comp scrollPane2::::831:x, space :::p}}"
+				"$verticalGroup": "par l {seq l {space :::p, comp scrollPane2:::p:189:p, space ::24:x}}"
+			} ) {
+				name: "panel2"
+				"background": sfield java.awt.Color lightGray
+				"border": new javax.swing.border.TitledBorder( new javax.swing.border.BevelBorder( 1, sfield java.awt.Color lightGray, sfield java.awt.Color lightGray, sfield java.awt.Color gray, sfield java.awt.Color lightGray ), "Completed Work Orders", 4, 0, new java.awt.Font( "Segoe UI", 1, 14 ), sfield java.awt.Color darkGray )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPane2"
+					add( new FormComponent( "javax.swing.JTable" ) {
+						name: "tblCompleted"
+						"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 2, false )
+					} )
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "txtSearch"
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 2, false )
+				addEvent( new FormEvent( "java.awt.event.KeyListener", "keyReleased", "txtSearchKeyReleased", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "Search for :"
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 4, false )
+				"foreground": sfield java.awt.Color darkGray
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 875, 630 )
+		} )
+	}
+}

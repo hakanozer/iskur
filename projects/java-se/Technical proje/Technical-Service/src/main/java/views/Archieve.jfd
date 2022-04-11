@@ -1,0 +1,74 @@
+JFDML JFormDesigner: "7.0.5.4.420" Java: "11.0.13" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :p:27:p, par l {seq {comp label3:::p:63:p, space ::269:x, comp label1:::p:203:p, space :p:63:p, comp lblname:::p:203:p, space :p:30:p}, seq {comp panel1:::p::p, space ::24:x}}}}"
+			"$verticalGroup": "par l {seq l {par l {seq {par l {seq {space :::p, comp label3::::62:x}, seq l {space :p:21:p, comp lblname:::p::p, space :0:27:x}}, space s:::p}, seq l {space :p:30:p, comp label1:::p::p, space ::29:x}}, comp panel1:::p::p, space :p:23:p}}"
+		} ) {
+			name: "this"
+			"maximizedBounds": new java.awt.Rectangle( 0, 0, 100, 137 )
+			"defaultCloseOperation": 2
+			"resizable": false
+			addEvent( new FormEvent( "java.awt.event.WindowListener", "windowClosed", "thisWindowClosed", true ) )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq t {space :::p, par t {comp panel2:::::x, seq {comp label2:::p:111:p, space s:::p, comp txtSearch::::666:x}}, space :p::p}}"
+				"$verticalGroup": "par l {seq t {space :p:21:p, par b {comp label2::b:p:35:p, comp txtSearch::b::35:x}, space u:::x, comp panel2:::p::p, space :p:21:p}}"
+			} ) {
+				name: "panel1"
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "txtSearch"
+					"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 2, false )
+					addEvent( new FormEvent( "java.awt.event.KeyListener", "keyReleased", "txtSearchKeyReleased", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label2"
+					"text": "Search For :"
+					"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 4, false )
+					"foreground": sfield java.awt.Color darkGray
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq t {space ::20:x, comp scrollPane1:::p:739:p, space :p:24:p}}"
+					"$verticalGroup": "par l {seq t {space :::x, comp scrollPane1:::p:390:p, space :p:21:p}}"
+				} ) {
+					name: "panel2"
+					"border": new javax.swing.border.TitledBorder( new javax.swing.border.BevelBorder( 1, sfield java.awt.Color lightGray, sfield java.awt.Color lightGray, sfield java.awt.Color darkGray, sfield java.awt.Color lightGray ), "Historical Data Table", 4, 0, new java.awt.Font( "Segoe UI", 1, 16 ), sfield java.awt.Color darkGray )
+					"foreground": new java.awt.Color( 73, 69, 69, 255 )
+					"maximumSize": new java.awt.Dimension( 60008, 60224 )
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "scrollPane1"
+						"maximumSize": new java.awt.Dimension( 60767, 60767 )
+						add( new FormComponent( "javax.swing.JTable" ) {
+							name: "tblarcieve"
+							"selectionBackground": new java.awt.Color( 240, 229, 99, 255 )
+							"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 2, false )
+						} )
+					} )
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Past Records"
+				"font": new java.awt.Font( "Segoe UI", 1, 20 )
+				"foreground": sfield java.awt.Color darkGray
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblname"
+				"text": "text"
+				"font": new java.awt.Font( "Segoe UI", 1, 14 )
+				"horizontalAlignment": 4
+				"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+				"foreground": sfield java.awt.Color darkGray
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "text"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/folder.png" )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 15, 0 )
+			"size": new java.awt.Dimension( 860, 665 )
+		} )
+	}
+}
