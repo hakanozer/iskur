@@ -1,0 +1,137 @@
+JFDML JFormDesigner: "7.0.5.4.420" Java: "11.0.13" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {space :::x, comp lblService:::p:350:p, space s:::p, comp lblName:::p:230:p, space :::x}, seq {space :::p, par l {comp label2::l:p:124:p, comp txtCustomerSearch::l:p:598:p}, space :0:0:x}, seq {space :::p, par l:::p {comp scrollPane1::l::605:x, comp panel1::l:::x, comp scrollPane3::l::605:x}, space ::2:x}}"
+			"$verticalGroup": "par l {seq l {space :::p, par t {comp lblService:::p:50:p, comp lblName:::p:25:p}, space :::p, comp label2:::p::p, space :::p, comp txtCustomerSearch:::p::p, space :::p, comp scrollPane1:::p:140:p, space :::p, comp panel1:::p::p, space u:::p, comp scrollPane3:::p:140:p, space :::x}}"
+		} ) {
+			name: "this"
+			"defaultCloseOperation": 2
+			"resizable": false
+			addEvent( new FormEvent( "java.awt.event.WindowListener", "windowClosing", "thisWindowClosing", true ) )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblService"
+				"text": "Technical Service"
+				"font": new java.awt.Font( "Times New Roman", 1, 20 )
+				"horizontalAlignment": 0
+				"foreground": new java.awt.Color( 33, 17, 17, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblName"
+				"text": " "
+				"font": new java.awt.Font( "Times New Roman", 2, 14 )
+				"horizontalAlignment": 4
+				"foreground": new java.awt.Color( 33, 17, 17, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "Customer Search"
+				"font": new java.awt.Font( "Times New Roman", 1, 16 )
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "txtCustomerSearch"
+				addEvent( new FormEvent( "java.awt.event.KeyListener", "keyReleased", "txtCustomerSearchKeyReleased", true ) )
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "tblCustomerService"
+					addEvent( new FormEvent( "java.awt.event.KeyListener", "keyReleased", "tblCustomerServiceKeyReleased", true ) )
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "tblCustomerServiceMouseClicked", true ) )
+				} )
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq {space :::p, par l:::p {comp label5::::45:x, comp label3::l::45:x, comp label6::l::45:x}, space :p:23:p, par t {seq t {comp txtDate:::p:70:p, space s:::p, comp label7::::48:x, space :::p, comp txtStatus:::p:74:p, space :p:15:p}, comp txtTitle::l:::x, comp scrollPane2::l:::x}, space :p:30:p, par t {seq t {par l {comp label1::t:p:37:p, comp label4::t:p:45:p}, space :::p, par t {comp txtDays:::p:192:p, comp txtPrice:::p:192:p}}, seq t {comp btnAddClickService:::p::p, space :::p, comp btnUpdateClickService:::p::p, space :p:9:p, comp btnDeleteClickService:::p::p}}, space :p:21:p}, seq l {space :p:134:p, comp lblError:::p:239:p, space ::232:x}}"
+				"$verticalGroup": "par l {seq l {space s:::p, par b {comp txtDays::b:p::p, comp label4::b:p::p, comp txtTitle::b:p::p, comp label3::b:p::p}, space s:::p, par l {par l {comp label5:::p::p, comp label1::l:p::p, comp txtPrice::t:p:24:p}, comp scrollPane2::t:p:24:p}, space s:::p, par b {comp btnDeleteClickService::b:p::p, comp label6::b:p:30:p, comp btnUpdateClickService::b:p::p, comp btnAddClickService::b:p::p, comp txtDate::b:p::p, comp label7::b:p::p, comp txtStatus::b:p::p}, space ::12:x, comp lblError:::p::p, space :::p}}"
+			} ) {
+				name: "panel1"
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label3"
+					"text": "Title"
+					"font": new java.awt.Font( "Times New Roman", 1, 14 )
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "txtTitle"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label4"
+					"text": "Days"
+					"font": new java.awt.Font( "Times New Roman", 1, 14 )
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "txtDays"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label5"
+					"text": "Info"
+					"font": new java.awt.Font( "Times New Roman", 1, 14 )
+				} )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPane2"
+					add( new FormComponent( "javax.swing.JTextArea" ) {
+						name: "txtInfo"
+					} )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "btnAddClickService"
+					"text": "Add"
+					"font": new java.awt.Font( "Times New Roman", 1, 16 )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnAddClickService", true ) )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnAddClickService", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblError"
+					"text": " "
+					"foreground": new java.awt.Color( 255, 0, 0, 255 )
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "txtPrice"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label1"
+					"text": "Price"
+					"font": new java.awt.Font( "Times New Roman", 1, 14 )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "btnDeleteClickService"
+					"text": "Delete"
+					"font": new java.awt.Font( "Times New Roman", 1, 14 )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnDeleteClickService", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "btnUpdateClickService"
+					"text": "Update"
+					"font": new java.awt.Font( "Times New Roman", 1, 14 )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnUpdateClickService", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label6"
+					"text": "Date"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "txtDate"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "txtStatus"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label7"
+					"text": "Status"
+				} )
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane3"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "tblUpdateDelete"
+					addEvent( new FormEvent( "java.awt.event.KeyListener", "keyReleased", "tblUpdateDeleteKeyReleased", true ) )
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "tblUpdateDeleteMouseClicked", true ) )
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 5, 10 )
+			"size": new java.awt.Dimension( 615, 620 )
+		} )
+	}
+}

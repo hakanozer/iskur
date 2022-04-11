@@ -1,0 +1,56 @@
+JFDML JFormDesigner: "7.0.5.4.420" Java: "11.0.13" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {par l {seq {space :p:19:p, comp label1:::p:384:p, par l {seq {space :p:51:p, comp label2:::p:71:p}, seq l {space :p:39:p, comp label3:::p:101:p}, seq l {space u:::p, par l {par l:::p {comp txtEmail::::167:x, comp txtPassword::::167:x}, comp lblError::l:p:167:p, seq l {space :p:16:p, comp btnSignIn:::p:142:p}}}}}, seq l {space :p:122:p, comp label4:::p:380:p}}, space ::16:x}}"
+			"$verticalGroup": "par l {seq {space :p:15:p, comp label4:::p:34:p, par l {seq {space ::121:x, comp label2:::p:25:p, space s:::p, comp txtEmail:::p::p, space u:::p, comp label3:::p:25:p, space u:::p, comp txtPassword:::p::p, space :p:24:p, comp btnSignIn:::p::p, space u:::p, comp lblError:::p:77:p, space :::x}, seq {space ::114:x, comp label1:::p::p, space :p:32:p}}}}"
+		} ) {
+			name: "this"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/loginin.png" )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "E-Mail"
+				"horizontalAlignment": 0
+				"font": &Font0 new java.awt.Font( "Segoe UI Black", 1, 16 )
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "txtEmail"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "Password"
+				"horizontalAlignment": 0
+				"font": #Font0
+			} )
+			add( new FormComponent( "javax.swing.JPasswordField" ) {
+				name: "txtPassword"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnSignIn"
+				"text": "Sign In"
+				"font": new java.awt.Font( "Segoe UI Black", 0, 18 )
+				"foreground": sfield java.awt.Color blue
+				"background": new java.awt.Color( 255, 0, 0, 255 )
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/signin.png" )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnSignInclick", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label4"
+				"text": "Technic Service"
+				"horizontalAlignment": 0
+				"font": new java.awt.Font( "Bodoni MT Black", 1, 26 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblError"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 600, 500 )
+		} )
+	}
+}
