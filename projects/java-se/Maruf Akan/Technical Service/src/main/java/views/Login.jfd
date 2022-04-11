@@ -1,0 +1,49 @@
+JFDML JFormDesigner: "7.0.5.4.420" Java: "11.0.14.1" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :p:32:p, par l:::p {comp lblError::::192:x, seq {par l:::p {comp label3::::57:x, comp label2::::57:x}, par l {seq {space :::p, par l:::p {comp txtEmail::l::129:x, comp txtPassword::l::129:x}}, seq l {space :p:19:p, comp label1:::p::p}}}, comp btnLogin::l::192:x}, space ::49:x}}"
+			"$verticalGroup": "par l {seq l {space :p:30:p, comp label1:::p:63:p, space u:::p, par b {comp label2::b:p:34:p, comp txtEmail::b:p::p}, space :::p, par b {comp label3::b:p::p, comp txtPassword::b:p::p}, space :::p, comp lblError:::p:26:p, space :::p, comp btnLogin:::p::p, space ::25:x}}"
+		} ) {
+			name: "this"
+			"resizable": false
+			"background": new java.awt.Color( 102, 102, 255, 255 )
+			"defaultCloseOperation": 2
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/loginicon.png" )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "E-mail"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "txtEmail"
+				addEvent( new FormEvent( "java.awt.event.KeyListener", "keyReleased", "txtEmailKeyReleased", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "Password:"
+			} )
+			add( new FormComponent( "javax.swing.JPasswordField" ) {
+				name: "txtPassword"
+				addEvent( new FormEvent( "java.awt.event.KeyListener", "keyReleased", "txtPasswordKeyReleased", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblError"
+				"foreground": new java.awt.Color( 255, 51, 51, 255 )
+				"text": " "
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnLogin"
+				"text": "Login"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnLoginClick", true ) )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 275, 300 )
+		} )
+	}
+}
