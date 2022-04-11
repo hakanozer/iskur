@@ -1,0 +1,84 @@
+JFDML JFormDesigner: "7.0.5.4.420" Java: "11.0.13" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "views.Base", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq t {comp label1:::p:165:p, space ::359:x, comp lblName:::p:174:p}, seq {space :::p, par l {seq l {par l {comp btnLogout:::p:46:p, comp label2::l:p::p}, space ::122:x, comp btnAddCustomer:::p:90:p, space :p:33:p, comp btnAddService:::p:90:p, space :p:39:p, comp btnArchive:::p:90:p, space :p:160:p}, comp scrollPane2::l::686:x, seq l {comp label3:::p::p, space :0:644:x}, comp scrollPane1::l::686:x}, space :::p}}"
+			"$verticalGroup": "par l {seq l {par b {comp lblName::b:p::p, comp label1::b:p::p}, par l {seq l {space :p:15:p, par t {comp btnAddCustomer::t:p:85:p, comp btnAddService::t:p:85:p, comp btnArchive::t:p:85:p}}, seq l {space :::p, comp btnLogout:::p::p, space ::54:x, comp label2:::p::p}}, space :::p, comp scrollPane1:::p:145:p, space :p:1:p, comp label3:::p::p, space :p:3:p, comp scrollPane2:::p:145:p, space ::26:x}}"
+		} ) {
+			name: "this"
+			"defaultCloseOperation": 2
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblName"
+				"text": "text"
+				"foreground": sfield java.awt.Color black
+				"horizontalAlignment": 4
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Technical Service"
+				"foreground": sfield java.awt.Color black
+				"font": new java.awt.Font( "Arial", 1, 12 )
+				"background": sfield java.awt.Color white
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnAddCustomer"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/add-user.png" )
+				"background": sfield java.awt.Color white
+				"toolTipText": "Add Customer"
+				"focusable": false
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnAddCustomerClick", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnAddService"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/addservice.png" )
+				"background": sfield java.awt.Color white
+				"toolTipText": "Add Service"
+				"focusable": false
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnAddServiceClick", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnArchive"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/archive.png" )
+				"background": sfield java.awt.Color white
+				"toolTipText": "Archive"
+				"focusable": false
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnArchiveClick", true ) )
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "tblServiceDeliver"
+				} )
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane2"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "tblServiceNew"
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnLogout"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/log-out.png" )
+				"toolTipText": "Log out"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnLogoutClick", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "Completed"
+				"foreground": sfield java.awt.Color black
+				"font": &SwingDerivedFont0 new com.jformdesigner.model.SwingDerivedFont( "Arial", 131073, 0, false )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "Waiting"
+				"foreground": sfield java.awt.Color black
+				"font": #SwingDerivedFont0
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 700, 500 )
+		} )
+	}
+}

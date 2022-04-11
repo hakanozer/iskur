@@ -1,0 +1,105 @@
+JFDML JFormDesigner: "7.0.5.4.420" Java: "11.0.13" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "views.Base", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq t {space :0:0:x, comp label1:::p:165:p, space :359:359:p, comp lblName:::p:174:p}, seq {space :::p, par l {comp panel1::::686:x, comp scrollPane2:::::x}, space :::p}}"
+			"$verticalGroup": "par l {seq l {par l {seq {space :2:2:p, comp label1:::p::p}, comp lblName:::p::p}, space s:::p, comp panel1:::p::p, space :::p, comp scrollPane2::::192:x, space :::p}}"
+		} ) {
+			name: "this"
+			addEvent( new FormEvent( "java.awt.event.WindowListener", "windowClosing", "thisWindowClosing", true ) )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Technical Service"
+				"foreground": sfield java.awt.Color black
+				"font": new java.awt.Font( "Arial", 1, 12 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblName"
+				"text": "text"
+				"foreground": sfield java.awt.Color black
+				"horizontalAlignment": 4
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq {space :::p, par l {seq {par l {comp label2:::p:51:p, comp label4::l:p:51:p}, space :::p, par l {seq {comp txtName:::p:257:p, space :p:37:p, comp label3:::p:51:p, space u:::p, comp txtSurname:::p:257:p, space :0:0:x}, seq {comp txtEmail:::p:257:p, space :::x, comp label5:::p:51:p, space s:::p, comp txtPhone:::p:257:p}}}, seq t {par t {seq {comp label6:::p:51:p, space :::p, comp scrollPane1:::::x}, seq t {space :p:21:p, comp btnCustomerSave:::p:52:p, space :p:33:p, comp lblError:::p:170:p, space :::x, comp btnCustomerUpdate:::p:58:p, space u:::p, comp btnDelete:::p:56:p, space :p:22:p}}, space :p:12:p}}}}"
+				"$verticalGroup": "par l {seq l {par l {seq {space :p:6:p, par b {comp label3::b:p::p, comp txtSurname::b:p::p}}, seq t {space :::p, par b {comp label2::b:p::p, comp txtName::b:p::p}}}, space s:::p, par l {par b {comp txtEmail::b:p::p, comp label4::b:p::p}, par b:l {comp txtPhone::b:p::p, comp label5::b:p::p}}, space ::30:x, par l {comp scrollPane1:::p:51:p, seq t {comp label6:::p:16:p, space :p:19:p}}, space :p:18:p, par l {comp lblError::t:p:30:p, par b {comp btnCustomerSave::b:p::p, comp btnCustomerUpdate::b:p::p, comp btnDelete::b:p::p}}, space :p:9:p}}"
+			} ) {
+				name: "panel1"
+				"preferredSize": new java.awt.Dimension( 683, 230 )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label2"
+					"text": "Name:"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "txtName"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label3"
+					"text": "Surname:"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "txtSurname"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label4"
+					"text": "E-mail:"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "txtEmail"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label5"
+					"text": "Phone:"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "txtPhone"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label6"
+					"text": "Address"
+				} )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPane1"
+					add( new FormComponent( "javax.swing.JTextArea" ) {
+						name: "txtAddress"
+					} )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "btnCustomerSave"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/addButtonIcon.png" )
+					"toolTipText": "Add"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "saveCustomerButtonClick", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "btnCustomerUpdate"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/updateButtonIcon.png" )
+					"toolTipText": "Update"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnCustomerUpdateClick", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "btnDelete"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/deleteIconButton.png" )
+					"toolTipText": "Delete"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnDeleteClick", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblError"
+					"foreground": sfield java.awt.Color red
+					"text": " "
+				} )
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane2"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "tblCustomer"
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "tblCustomerMouseClicked", true ) )
+					addEvent( new FormEvent( "java.awt.event.KeyListener", "keyReleased", "tblCustomerKeyReleased", true ) )
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 700, 500 )
+		} )
+	}
+}
