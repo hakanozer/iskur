@@ -1,6 +1,9 @@
 package props;
 
 public class
+
+ // admin login props
+
 User {
     private int uid;
     private String name;

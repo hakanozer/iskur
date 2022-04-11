@@ -6,6 +6,7 @@ import javax.mail.internet.InternetAddress;
 import java.util.*;
 
 public class Util {
+    // Email Valid Method
     public static boolean isValidEmailAddress(String email) {
         boolean result = true;
         try {
