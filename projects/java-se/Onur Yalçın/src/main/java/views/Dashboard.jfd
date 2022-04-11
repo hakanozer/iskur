@@ -1,0 +1,66 @@
+JFDML JFormDesigner: "7.0.5.4.420" Java: "11.0.13" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {space :::p, par l {seq {comp label1::::404:x, space :p:12:p, comp lblName:::p:262:p, space :p:14:p}, seq {comp button1:::p:91:p, space s:::p, comp button2:::p:98:p, space s:::p, comp button3:::p::p, space :p:143:p, comp textField1::::224:x, space :::p}, seq t {par l {comp scrollPane1::::686:x, comp scrollPane2::::686:x}, space :::p}}}}"
+			"$verticalGroup": "par l {seq l {space :::p, par b {comp lblName::b:p::p, comp label1::b:p::p}, space s:::p, par l:::p {comp button1::l::74:x, comp button2::l::74:x, comp button3::l::74:x, comp textField1::t:p::p}, space s:::p, comp scrollPane1:::p:156:p, space :::p, comp scrollPane2::::168:x, space :::p}}"
+		} ) {
+			name: "this"
+			"defaultCloseOperation": 2
+			"resizable": false
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblName"
+				"horizontalAlignment": 4
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Technical Service"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"selectedIcon": sfield com.jformdesigner.model.FormObject NULL_VALUE
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/adduser.png" )
+				"toolTipText": "Customer add"
+				"hideActionText": true
+				"focusable": false
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnAddCustomerClick", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button2"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/technics.png" )
+				"toolTipText": "Technical service"
+				"hideActionText": true
+				"focusable": false
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "addServiceClick", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button3"
+				"toolTipText": "archive"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/archive.png" )
+				"hideActionText": true
+				"focusable": false
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "table1"
+				} )
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane2"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "table2"
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textField1"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 700, 500 )
+		} )
+	}
+}
+

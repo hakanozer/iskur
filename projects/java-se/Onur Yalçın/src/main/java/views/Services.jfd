@@ -1,0 +1,85 @@
+JFDML JFormDesigner: "7.0.5.4.420" Java: "11.0.13" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :::p, par l {seq {comp label1:::p:404:p, space :p:36:p, comp lblName:::::x}, seq {comp label4:::p::p, space s:::p, comp txtSearch:::::x}, comp panel1::l:::x, comp scrollPane1::l:::x}, space :::p}}"
+			"$verticalGroup": "par l {seq l {space :::p, par b {comp label1::b:p::p, comp lblName::b:p::p}, space s:::p, par b {comp label4::b:p::p, comp txtSearch::b:p::p}, space s:::p, comp scrollPane1:::p:178:p, space :::p, comp panel1:::p::p, space :::p}}"
+		} ) {
+			name: "this"
+			addEvent( new FormEvent( "java.awt.event.WindowListener", "windowClosing", "thisWindowClosing", true ) )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Technical Service"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblName"
+				"text": "text"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label4"
+				"text": "Customer Search :"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "txtSearch"
+				addEvent( new FormEvent( "java.awt.event.KeyListener", "keyReleased", "searchKeyReleased", true ) )
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "tblCustomer"
+				} )
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {comp btnAdd::t:::x, seq {space :::p, par l {seq {par l {comp label7::l:p::p, comp label5::l:p::p}, space s:::p, par l {comp lblError:::::x, seq t {comp txtTitle::::277:x, space s:::p, comp label6:::p::p, space :::p, comp txtDays:::p:286:p}, comp scrollPane2::t::618:x}}, seq l {comp lblPricce:::p:132:p, space :p:42:p, comp txtPrice:::p:105:p, space :0:395:x}}, space :::p}}"
+				"$verticalGroup": "par l {seq t {space ::38:x, par l {seq t {comp label6:::p::p, space :p:14:p}, seq t {par b {comp label5::b:p::p, comp txtTitle::b:p::p}, space :::p}, seq l {comp txtDays:::p::p, space :::p}}, par b {comp label7::b:p::p, comp scrollPane2::b:p::p}, space s:::p, comp lblError:::p:26:p, space :::p, comp btnAdd:::p::p, space u:::p, par b {comp lblPricce::b:p::p, comp txtPrice::b:p::p}, space :p:11:p}}"
+			} ) {
+				name: "panel1"
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label5"
+					"text": "Title :"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "txtTitle"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "txtDays"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label6"
+					"text": "Days :"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label7"
+					"text": "Detail :"
+				} )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPane2"
+					add( new FormComponent( "javax.swing.JTextArea" ) {
+						name: "txtDetail"
+					} )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblError"
+					"foreground": new java.awt.Color( 255, 51, 51, 255 )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "btnAdd"
+					"text": "Add"
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "btnAddClickService", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "txtPrice"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblPricce"
+					"text": "Price"
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 700, 500 )
+		} )
+	}
+}
