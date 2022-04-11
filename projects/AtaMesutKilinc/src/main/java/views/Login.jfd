@@ -1,0 +1,80 @@
+JFDML JFormDesigner: "7.0.5.4.420" Java: "11.0.13" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {comp pnlIcon:::::x, par l {seq {space :::p, par l {comp lblError:::::x, seq {space :p:106:p, comp label1:::p::p, space :0:105:x}}, space :::p}, seq {space :p:12:p, par l {comp lblEmail:::p:47:p, comp lblPassword:::p::p}, space :::p, par l {comp txtEmail:::p:177:p, comp txtPassword:::p:177:p}, space :0:37:x}, seq l {space :p:89:p, comp btnLogin:::p::p, space ::98:x}}}}"
+			"$verticalGroup": "par l {seq l {space ::29:x, comp label1:::p:80:p, space s:::p, par b {comp txtEmail::b:p::p, comp lblEmail::b:p:30:p}, space s:::p, par b {comp lblPassword::b:p:30:p, comp txtPassword::b:p::p}, space :p:18:p, comp lblError:::p:25:p, space :::p, comp btnLogin:::p::p, space :p:55:p}, comp pnlIcon::l:::x}"
+		} ) {
+			name: "this"
+			"resizable": false
+			"defaultCloseOperation": 2
+			"iconImage": new com.jformdesigner.model.SwingIcon( 0, "/loginwindow1.png" )
+			"title": "Login Window"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/LoginIcon.png" )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblEmail"
+				"text": "Email :"
+				"horizontalAlignment": 4
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblPassword"
+				"text": "Password :"
+				"horizontalAlignment": 4
+			} )
+			add( new FormComponent( "javax.swing.JPasswordField" ) {
+				name: "txtPassword"
+				addEvent( new FormEvent( "java.awt.event.KeyListener", "keyReleased", "txtPasswordKeyReleased", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "txtEmail"
+				addEvent( new FormEvent( "java.awt.event.KeyListener", "keyReleased", "txtEmailKeyReleased", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblError"
+				"horizontalAlignment": 0
+				"foreground": new java.awt.Color( 245, 29, 29, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnLogin"
+				"text": "Login"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/LoginbtnIcon.png" )
+				"background": sfield java.awt.Color lightGray
+				"foreground": new java.awt.Color( 0, 172, 238, 255 )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnLoginClick", true ) )
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq {space :p:26:p, par l {comp label4:::p:242:p, comp label3:::p:242:p}, space :p:33:p}, seq t {space :::p, comp label2:::p::p, space :p:85:p}}"
+				"$verticalGroup": "par l {seq {space :p:46:p, comp label2:::p:150:p, space u:::p, comp label3:::p:47:p, space :::p, comp label4:::p:47:p, space ::40:x}}"
+			} ) {
+				name: "pnlIcon"
+				"enabled": false
+				"background": new java.awt.Color( 0, 172, 238, 255 )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label2"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/loginRepairService.png" )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label3"
+					"text": "Tecnical Service Login"
+					"horizontalAlignment": 0
+					"font": new java.awt.Font( "Arial", 1, 20 )
+					"background": new java.awt.Color( 60, 167, 233, 255 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label4"
+					"text": "More Than Repair"
+					"horizontalAlignment": 0
+					"font": new java.awt.Font( "Arial", 0, 16 )
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 10 )
+			"size": new java.awt.Dimension( 590, 380 )
+		} )
+	}
+}
