@@ -1,0 +1,93 @@
+JFDML JFormDesigner: "7.0.5.4.420" Java: "11.0.13" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "views.Base", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :::p, comp label3:::p:166:p, space :::p, comp label4:::p:323:p, space ::81:x, comp lblName:::p:300:p, space :::p}, comp panel1::l:::x}"
+			"$verticalGroup": "par l {seq l {space :::p, par l {comp lblName:::p::p, par b {comp label3::b:p:68:p, comp label4::b:p:46:p}}, space ::8:x, comp panel1:::p::p}}"
+		} ) {
+			name: "this"
+			"defaultCloseOperation": 2
+			"iconImage": new com.jformdesigner.model.SwingIcon( 0, "/programIcon.png" )
+			"resizable": false
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblName"
+				"text": " "
+				"font": new java.awt.Font( "Segoe UI", 1, 14 )
+				"horizontalAlignment": 4
+				"foreground": sfield java.awt.SystemColor windowText
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq t {par t {seq {space :::p, comp scrollPane1::::876:x}, seq {space :::p, comp scrollPane2::::876:x}, seq l {space :p:288:p, par l:::p {comp txtSearch:::::x, seq {comp btnCustomerAdd:::p:95:p, space u:::p, comp btnAddService:::p:95:p, space u:::p, comp btnArchive:::p:95:p}}, space :0:285:x}}, space :::p}}"
+				"$verticalGroup": "par l {seq l {space :::p, par l {comp btnArchive:::p:95:p, comp btnAddService:::p:95:p, comp btnCustomerAdd:::p:95:p}, space u:::p, comp txtSearch:::p::p, space u:::p, comp scrollPane1::::146:x, space s:::p, comp scrollPane2:::p:157:p}}"
+			} ) {
+				name: "panel1"
+				"background": sfield java.awt.SystemColor activeCaption
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "btnCustomerAdd"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/userAddIcon.png" )
+					"background": sfield java.awt.SystemColor activeCaption
+					"toolTipText": "Add Customer"
+					"font": new java.awt.Font( "Segoe UI", 1, 14 )
+					"focusable": false
+					"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnCustomerAddClicked", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "btnAddService"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/technicalServiceIcon.png" )
+					"background": sfield java.awt.SystemColor activeCaption
+					"toolTipText": "Add Service"
+					"font": new java.awt.Font( "Segoe UI", 1, 14 )
+					"focusable": false
+					"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnAddServiceClicked", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "btnArchive"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/archiveIcon.png" )
+					"background": sfield java.awt.SystemColor activeCaption
+					"toolTipText": "Archive"
+					"font": new java.awt.Font( "Segoe UI", 1, 14 )
+					"focusable": false
+					"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnArchiveClicked", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "txtSearch"
+					"font": new java.awt.Font( "Segoe UI", 1, 14 )
+				} )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPane1"
+					add( new FormComponent( "javax.swing.JTable" ) {
+						name: "tblNotCompleted"
+					} )
+				} )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPane2"
+					add( new FormComponent( "javax.swing.JTable" ) {
+						name: "tblCompleted"
+					} )
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "KIRCALO"
+				"horizontalAlignment": 2
+				"font": new java.awt.Font( "Kristen ITC", 1, 26 )
+				"foreground": sfield java.awt.SystemColor textHighlight
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label4"
+				"text": "TECHNICAL SERVICE"
+				"horizontalAlignment": 2
+				"font": new java.awt.Font( "Segoe UI Black", 1, 22 )
+				"foreground": sfield java.awt.SystemColor textHighlight
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 5, 5 )
+			"size": new java.awt.Dimension( 890, 600 )
+		} )
+	}
+}

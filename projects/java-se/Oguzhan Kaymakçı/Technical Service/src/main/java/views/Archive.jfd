@@ -1,0 +1,32 @@
+JFDML JFormDesigner: "7.0.5.4.420" Java: "11.0.13" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :::p, comp label1:::p::p, space ::569:x, comp btnTurnBck:::p::p, space :::p}, seq l {space :p:81:p, comp label2:::p::p, space s:::p, comp txtSearch:::p:182:p, space ::382:x}}"
+			"$verticalGroup": "par l {seq l {space :::p, par b {comp label1::b:p::p, comp btnTurnBck::b:p::p}, space :::p, par b {comp label2::b:p::p, comp txtSearch::b:p::p}, space ::396:x}}"
+		} ) {
+			name: "this"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Archive"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnTurnBck"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/dashboardIcon.png" )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnTurnBck", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "Search"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "txtSearch"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 700, 500 )
+		} )
+	}
+}

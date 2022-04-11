@@ -1,0 +1,84 @@
+                <<<DAY 1>>>
+pom.xml'e sqlite için bağımlılıklarımızı yazdık.
+Projemiz adında boşluk var. pom.xml'de artificadeId otomatik o ismi alıyor. ArtifacId'de boşluk olmaz <artifactId>Technical_Service</artifactId>
+views paketi okuşturduk. Forms elemanlarının hepsi burada bulanacak
+Model View Controller Bak!!!!
+views paketi içinde jframe login oluştur.
+resoruces'in altında iconlarımızı tutacağız.
+login için icon ekledik. label'a
+Login paneli için çeşitli düzenlemeleri yap. Butona icon koy
+  contentPane.setBackground(Color.LIGHT_GRAY); ile arka plan rengini değiştirdik
+  backround colur form'da her değişikli yaptığımızda default değeri alıyor. Bunun önüne geçmek için Base class'ı oluşturduk ve o JFrame'den miras aldı.
+  Base class'ında setBackground metodunu override ettik. Son olarak Login class'ımız Base'den miras alacak.
+Öncelikle client tarafına gerekli denetimleri yapacağız. Datalar veritabanına gitmeye uygun mu diye
+Bunun  için fonksiyon üretiyoruz. login class'ında. userLogin
+String password=String.valueOf(txtPassword.getPassword()).trim(); => JPasswordFiled char dizisi halinde tutuyor. O yüzden böyle yaptık.
+Utils paketi - sınıfı açtık. Mail valıdation'ları oraya yazdık
+mail validasyonu için dependecies ekledik. else if'te onu kullandık. Statik ifade olduğu için direk kullandık
+userLogin metodunu buton gövdesine yazmamamızın sebebi butona 2 farklı event atayacağız. Tekrar yazmak yerine bunu yaptık.
+hata neredeyse oraya fokuslan  =>    txtEmail.requestFocus();
+dünkü projeden gerekenlere aktardım yeni projeye. models props utils vs.
+Login'deki userLogin metodunun else bloğunu doldurduk
+else de if bloğu doğruysa yeni bir pencere açılacak
+Giriş yapan kullancının adını ve soyadını static ile taşıyacağız. UserImpl'de statik değişken oluşturduk.
+USerImpl'de userLogin'de status=rs.next(); altında name değerini çekiyoruz.
+if(status){
+                name= rs.getString("name")+" "+rs.getString("surname");
+            }
+
+static olarak id değerini de tutaağız. İleride update işlemleri vs. için
+else de if  bloğu doğruysa  view klasörüne yeni bir jForm aç
+Class'ları vs. bulamazsa rebuild et. Build=>Rebuild
+java target klasörü bak!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+koplayama işleminde kopyalanacak dosyayı direk ide içine at ama target klsörünü kadlır önce.
+View'de dahsbord aç. Other de base'den mirası seç.
+else de if  bloğu doğruysa  view klasörüne yeni bir jForm aç => dasbord
+Program çalıştığında otomatik mail ve şifreyi görmek için login constructoruna mail ve password'u yaz.
+login paneli kapandığında arkada nesneler çalışmasın diye defaultClose'u dispose yap
+dasbord'da lblName'ye UserImp'ledeki static name'yi çektik
+dashbord'umuza butonlar ekledik focusable false yap.
+
+
+                        <<<DAY 2>>>
+Dashboard ekranına search için txtField ekledik.
+Customer ve Service için veritabanında tablolar ürettik.
+Customer için models'de interface propsTa class oluşturduk
+CustomerImpl yap.
+CustomerImpl customerInsert içini doldur.
+Customer eklemek için jframe customerAdd => Base'den miras alacak
+default close operation => Dispose
+Dashboar'da customer add'e event ekle
+customer penceresinde Çıkış için event ekledik. ÇArpıya basınca dashbord açılacak
+validasyon işlemleri için  private Customer validate() metodunu yazıyoruz
+Customer customer=fncDataValidate(); => fncDataValidate zaten bir nesne. customer referansına taşımış olduk. Bellekte fazladan yer kaplamadık
+Bellekte ayrılmış nesnenin farklı iki referansı oluşur.
+Dashbbord'da addService yap.
+
+//CustomerAdd'de
+//ekleye bastığında aşağıda listelensinler
+listedeki datayı seçtin yukarıda değiştirdin update et.
+silme işlemi de olsun
+
+
+
+
+
+
+
+Service'de customer arama
+Arama sonucu bittiğinde veri silindiğinde eski datalar görülmeli.
+Datayı yedekledik.
+Asıl datayı yedekle besledik
+Conncetion'ın sürekli açılmasının önüne geçtik.
+elastic search denir. BAK!!!
+binary seach yaz!!!
+
+//veritabanı md4 karakter seti unicode utf8md4_general_ci klavye desteği
+Koleksiyon ailesi yeteneğini ne karar arttırırsan veritabanına maiyeti o kadar artar
+
+VERİTABANINDA service tablosuna price ekle. Etkilenen yerleri düzelt.
+dashboar'du da yap. Tabloların birinde tamamlananları(status 3) diğeri tamamlanmayanları(status 2)
+                join'e ihtiyaç var
+arşivde tamamlananları göster. arşivde arama olsun.
+0 yeni geldi 1 tamir ediliyor.  2 tamir bitti 3 teslim edildi
+dashboard'da login' e dönüş için çıkış butonu olsun. JOptioanlPanel ile sorsun
