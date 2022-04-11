@@ -1,7 +1,0 @@
-project se start
-
-ali bilmem
-
-Ali Bilebilir
-
-commit

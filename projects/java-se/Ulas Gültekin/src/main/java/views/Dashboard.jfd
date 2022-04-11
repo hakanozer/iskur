@@ -1,0 +1,62 @@
+JFDML JFormDesigner: "7.0.5.4.420" Java: "11.0.13" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq t {space :0:201:x, comp label1:::p:303:p, space :::p, par l {seq {comp btnArchiveAdd:::p:182:p, space :::p}, seq t {comp lblName:::p:172:p, space :p:16:p}}}, seq {par l {seq l {comp btnCustomerAdd:::p:206:p, space s:::p, comp lblError:::::x, space :::p}, seq l {space :::p, comp label2:::p:191:p, space :p:69:p}}, par l {seq {space :6:6:p, comp label3:::p:191:p, space ::38:x, comp label4:::p:191:p}, comp btnServiceAdd:::p:198:p}, space :::p}}"
+			"$verticalGroup": "par l {seq l {space :::p, comp lblName:::p:34:p, space ::208:x, comp lblError:::p:30:p, space :p:290:p}, seq l {space :p:36:p, comp label1:::p:40:p, space :p:136:p, par l:::p {comp btnCustomerAdd::t::151:x, comp btnServiceAdd::l::151:x, comp btnArchiveAdd::l::151:x}, space u:::p, par l {par b {comp label2::b:p:34:p, comp label3::b:p:34:p}, comp label4::l:p:34:p}, space ::159:x}}"
+		} ) {
+			name: "this"
+			addEvent( new FormEvent( "java.awt.event.WindowListener", "windowClosing", "thisWindowClosing", true ) )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnCustomerAdd"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/useradd.png" )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnCustomerAdd", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnServiceAdd"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/serviceadd.png" )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnServiceAddClick", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnArchiveAdd"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/arcihiveeadd.png" )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnArchiveAdd", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblError"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblName"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "TECHNIC SERVICE"
+				"horizontalAlignment": 0
+				"font": new java.awt.Font( "Segoe UI Black", 1, 26 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "Customer Add"
+				"horizontalAlignment": 0
+				"font": &Font0 new java.awt.Font( "Source Sans Pro Semibold", 1, 18 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "Service Add"
+				"horizontalAlignment": 0
+				"font": #Font0
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label4"
+				"text": "Archive"
+				"horizontalAlignment": 0
+				"font": #Font0
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 5 )
+			"size": new java.awt.Dimension( 700, 600 )
+		} )
+	}
+}

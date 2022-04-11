@@ -1,0 +1,57 @@
+JFDML JFormDesigner: "7.0.5.4.420" Java: "11.0.13" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq t {space :::p, comp lblError::::336:x, space :::p}, seq t {par t {seq {space ::245:x, comp btnLogin:::p:89:p}, seq {space :p:26:p, par l {comp txtPassword::::308:x, comp txtEmail::l::308:x, seq {par l {comp label3:::p:75:p, comp label2:::p:75:p}, space :0:233:x}}}}, space :p:14:p}, seq l {space :p:142:p, comp label1:::p::p, space ::142:x}}"
+			"$verticalGroup": "par l {seq l {space :p:9:p, comp label1:::p:90:p, space s:::p, comp label2:::p::p, space :::p, comp txtEmail:::p::p, space :::p, comp label3:::p::p, space :::p, comp txtPassword:::p::p, space s:::p, comp btnLogin:::p:36:p, space ::44:x, comp lblError:::p::p, space :p:19:p}}"
+		} ) {
+			name: "this"
+			"defaultCloseOperation": 2
+			"background": new java.awt.Color( 255, 255, 153, 255 )
+			"resizable": false
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "E-Mail"
+				"font": new java.awt.Font( "Times New Roman", 1, 16 )
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "txtEmail"
+				"font": new java.awt.Font( "Times New Roman", 0, 16 )
+				addEvent( new FormEvent( "java.awt.event.KeyListener", "keyReleased", "txtEmailKeyReleased", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "Password"
+				"font": new java.awt.Font( "Times New Roman", 1, 16 )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnLogin"
+				"text": "LOGIN"
+				"font": new java.awt.Font( "Times New Roman", 1, 16 )
+				"foreground": new java.awt.Color( 25, 17, 17, 255 )
+				"background": new java.awt.Color( 179, 223, 223, 255 )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnLoginClick", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblError"
+				"text": " "
+				"foreground": new java.awt.Color( 255, 0, 0, 255 )
+				"horizontalAlignment": 0
+			} )
+			add( new FormComponent( "javax.swing.JPasswordField" ) {
+				name: "txtPassword"
+				"font": new java.awt.Font( "Times New Roman", 0, 16 )
+				addEvent( new FormEvent( "java.awt.event.KeyListener", "keyReleased", "txtPasswordKeyReleased", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/user-login.png" )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 65, 0 )
+			"size": new java.awt.Dimension( 350, 400 )
+		} )
+	}
+}
