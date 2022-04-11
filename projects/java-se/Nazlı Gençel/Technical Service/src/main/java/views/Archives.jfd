@@ -1,0 +1,40 @@
+JFDML JFormDesigner: "7.0.5.4.420" Java: "11.0.13" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {space :::x, comp label1:::p:155:p, space :388:388:p, comp lblName:::p:143:p, space :::p}, seq l {space :::p, par l {seq l {comp label3:::p::p, space s:::p, comp txtServiceSearch:::p:572:p}, comp tblService::l:p:678:p}, space :::x}}"
+			"$verticalGroup": "par l {seq l {space :::p, par l {comp label1:::p::p, comp lblName:::p::p}, space :p:37:p, par b {comp label3::b:p::p, comp txtServiceSearch::b:p::p}, space :p:49:p, comp tblService:::p:293:p, space ::37:x}}"
+		} ) {
+			name: "this"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblName"
+				"text": " "
+				"background": new java.awt.Color( 0, 102, 102, 255 )
+				"foreground": new java.awt.Color( 0, 0, 0, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Technical Service"
+				"background": new java.awt.Color( 0, 102, 102, 255 )
+				"foreground": new java.awt.Color( 0, 0, 0, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "txtServiceSearch"
+				addEvent( new FormEvent( "java.awt.event.KeyListener", "keyReleased", "txtCustomerSearchKeyReleased", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "Service Search"
+			} )
+			add( new FormComponent( "javax.swing.JTable" ) {
+				name: "tblService"
+				"background": new java.awt.Color( 255, 255, 153, 255 )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 700, 500 )
+		} )
+	}
+}
