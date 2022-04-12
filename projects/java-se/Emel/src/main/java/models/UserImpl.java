@@ -61,47 +61,6 @@ public class UserImpl implements IUser{
     }
 
 
-   /* @Override
-    public int userDelete(int uid) {
-        int status=0;
-        try{
-            String sql="DELETE FROM user WHERE uid = ?";
-            PreparedStatement pre = db.connect().prepareStatement(sql);
-            pre.setInt(1,uid);
-            status = pre.executeUpdate();
-        }catch (Exception e){
-            System.out.println("userDelete Error : "+e);
-        }
-        finally {
-            db.close();//ne olursa olsun try catch'den sonra �al��acak olan k�s�md�r.
-        }
-        return status;
-    }
-
-    @Override
-    public List<User> userList() {
-        List<User> ls=new ArrayList<>();
-        try {
-            String sql="select*from user";
-            PreparedStatement pre=db.connect().prepareStatement(sql);
-            ResultSet rs=pre.executeQuery();
-            while (rs.next()){
-                int uid= rs.getInt("uid");
-                String name=rs.getString("name");
-                String surname = rs.getString("surname");
-                String email = rs.getString("email");
-                String password= rs.getString("password");
-                User u=new User(uid,name,surname,email,password);
-                ls.add(u);
-            }
-        }catch (Exception ex){
-            System.err.println("userList Error"+ex);
-        }finally {
-            db.close();
-        }
-        return ls;
-    }
-*/
     @Override
     public boolean userLogin(String email, String password) {
         boolean status=false;
@@ -129,25 +88,25 @@ public class UserImpl implements IUser{
         return status;
     }
 
-
-
-    /*public String userSingle(String email) {
-        try {
-            String sql="select * from user where email=?";
+  public String userSingle(String email){
+         String name="";
+        try{
+            String sql="Select name,surname from user where email=?";
             PreparedStatement pre=db.connect().prepareStatement(sql);
             pre.setString(1,email);
-            ResultSet rs=pre.executeQuery();
-
-
-
-                return name ;
+            ResultSet rs= pre.executeQuery();
+            if(rs.next()){
+                name="Sn "+rs.getString("name")+" "+rs.getString("surname");
             }
+
         }catch (Exception ex){
-            System.err.println("userSingle Error"+ex);
+            System.out.println("userSingle Error: ");
         }finally {
             db.close();
-        }*/
+        }
 
+        return name;
+  }
 
 
 

@@ -91,7 +91,7 @@ public class CustomerImpl implements Icustomer {
     public List<Customer> customerList() {
         List<Customer> customerList = new ArrayList<>();
         try {
-            String sql = "Select*from customer";
+            String sql = "Select*from customer order by cid desc ";
             PreparedStatement pre = db.connect().prepareStatement(sql);
             ResultSet rs = pre.executeQuery();
             while (rs.next()) {

@@ -6,51 +6,65 @@ package views;
 
 import java.beans.*;
 import javax.swing.border.*;
+import javax.swing.event.*;
 import models.ServiceImpl;
 import models.UserImpl;
 import props.Service;
-
 import java.awt.*;
 import java.awt.event.*;
 import java.math.RoundingMode;
+import java.text.DateFormat;
 import java.text.NumberFormat;
-import java.util.Locale;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 import javax.swing.text.JTextComponent;
 
 
 public class Services extends Base {
-    ServiceImpl serviceImpl = new ServiceImpl();
-    int row = -1;
-    int rowService = -1;
-    int selectedId = 0;
+     ServiceImpl serviceImpl = new ServiceImpl();
+     int row = -1;
+     int rowService = -1;
+     int selectedId = 0;
+     String dateNow="";
+     boolean isPressed_btnAdd=false;
+     boolean isPressed_btnUpdate=false;
 
 
 
-
-    public Services() {
+     public Services() {
         initComponents();
         lblname.setText("Sn. " + UserImpl.name);
         tblCustomer.setModel(serviceImpl.serviceCustomerTable(null));
+        tblCustomer.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         tblServices.setModel(serviceImpl.tablemodelOlustur());
+        tblServices.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         cmbStatus.setModel(cmbmodel());
+        dateNow=Date();
+        txtOrderDate.setText(dateNow);
+        txtOrderDate.setEditable(false);
 
 
     }
 
-    private void thisWindowClosing(WindowEvent e) {
+
+     private void thisWindowClosing(WindowEvent e) {
         Dashboard d = new Dashboard();
         d.setVisible(true);
     }
 
-    private void txtCustomerSearchKeyReleased(KeyEvent e) {
+
+     private void txtCustomerSearchKeyReleased(KeyEvent e) {
         String txtSearch = txtCustomerSearch.getText().trim();
         tblCustomer.setModel(serviceImpl.serviceCustomerTable(txtSearch));
 
     }
 
-    private void btnAddClick(ActionEvent e) {
+
+     private void btnAddClick(ActionEvent e) {
+        isPressed_btnAdd=true;
         Service service = fncDataValidate();
         if (service != null) {
             int status = serviceImpl.serviceInsert(service);
@@ -58,10 +72,10 @@ public class Services extends Base {
                 JOptionPane.showMessageDialog(this, "Add services process is successful");
                 tblServices.setModel(serviceImpl.tablemodelOlustur());
                 tabbedPane1.setSelectedIndex(1);
+
+
             } else {
                 if (status == -1) {
-                    lblError.setText("Email or Phone have already used");
-                } else {
                     lblError.setText("Insert Error");
                 }
             }
@@ -69,22 +83,21 @@ public class Services extends Base {
 
     }
 
-    public Service fncDataValidate() {
+
+     public Service fncDataValidate() {
         row = tblCustomer.getSelectedRow();
         String title = txtTitle.getText().trim();
         String details = txtDetails.getText().trim();
         String daysString = txtDays.getText().trim();
         String priceString = txtPrice.getText().trim();
-
-
-
+        String dateToday=txtOrderDate.getText().trim();
 
         if (title.equals("")) {
             lblError.setText("Title is empty");
         } else if (daysString.equals("")) {
             lblError.setText("Days is empty");
         } else if (!isInt(txtDays.getText().trim())) {
-            lblError.setText("Days can be only number");
+            lblError.setText("Days can be only positive number");
         } else if ((priceString.contains(",")) ){///Hocaya sor
             lblError.setText(" Pelase use . instead of ,");
         }else if (priceString.equals("")) {
@@ -96,17 +109,21 @@ public class Services extends Base {
         } else {
             Double price = Double.parseDouble(txtPrice.getText().trim());
             int days = Integer.parseInt(txtDays.getText().trim());
+            if(price<0 ){
+                lblError.setText("Price can not be less than 0");
+            }else{
             int cid = (Integer) tblCustomer.getValueAt(row, 0);
             lblError.setText("");
-            Service service = new Service(0, cid, title, details, days, null, 0, price);
-            return service;
+            Service service = new Service(0, cid, title, details, days, null, 0, price,dateToday);
+            return service;}
         }
 
         return null;
 
     }
 
-    public Service fncValidateService() {
+
+     public Service fncValidateService() {
         rowService = tblServices.getSelectedRow();
         String title = txtTitleUpdate.getText().trim();
         String details = txtDetailsUpdate.getText().trim();
@@ -114,6 +131,8 @@ public class Services extends Base {
         String priceString = txtPriceUpdate2.getText().trim();
         String date = txtDeliveryDate.getText().trim();
         int statusCmb = cmbStatus.getSelectedIndex();
+        String dateToday=txtOrderDate.getText().trim();
+
 
        if(statusCmb==1 || statusCmb==0 || statusCmb==2) {
         if (rowService == -1) {
@@ -136,13 +155,15 @@ public class Services extends Base {
             lblError2.setText("Date must be empty");
         }else{
             lblError2.setText("");
-
             Double price = Double.parseDouble(priceString);
+            if(price<0 ){
+                lblError2.setText("Price can not be less than 0");
+            }else {
             int days = Integer.parseInt(daysString);
             int cid = (Integer) tblServices.getValueAt(rowService, 1);
-            Service service = new Service(selectedId, cid, title, details, days, date, statusCmb, price);
+            Service service = new Service(selectedId, cid, title, details, days, date, statusCmb, price,dateToday);
             return service;
-        }
+        }}
        } else if(statusCmb==3){
 
            if (date.equals("")) {
@@ -162,31 +183,25 @@ public class Services extends Base {
            } else if (daysString.equals("")) {
                lblError2.setText("Days is empty");
            } else if (!isInt(daysString)) {
-               lblError2.setText("Days can be only number");}
+               lblError2.setText("Days can be positive only number");}
            else{
                lblError2.setText("");
 
                Double price = Double.parseDouble(priceString);
+               if(price<0 ){
+                   lblError2.setText("Price can not be less than 0");
+               }else {
                int days = Integer.parseInt(daysString);
                int cid = (Integer) tblServices.getValueAt(rowService, 1);
-               Service service = new Service(selectedId, cid, title, details, days, date, statusCmb, price);
-               return service;}
-       } /*else {
-           lblError2.setText("");
-
-           Double price = Double.parseDouble(priceString);
-           int days = Integer.parseInt(daysString);
-           int cid = (Integer) tblServices.getValueAt(rowService, 1);
-           Service service = new Service(selectedId, cid, title, details, days, date, statusCmb, price);
-           return service;
-       }*/
+               Service service = new Service(selectedId, cid, title, details, days, date, statusCmb, price,dateToday);
+               return service;}}
+       }
 
         return null;
     }
 
 
-
-        public static boolean isInt (String s){
+     public static boolean isInt (String s){
             for (int i = 0; i < s.length(); i++) {
                 if (!Character.isDigit(s.charAt(i))) {
                     return false;
@@ -195,34 +210,37 @@ public class Services extends Base {
             return true;
         }
 
-        private void tblServicesMouseReleased (MouseEvent e){
+
+     private void tblServicesMouseReleased (MouseEvent e) {
 
 
             rowService = tblServices.getSelectedRow();
             selectedId = (Integer) tblServices.getValueAt(rowService, 0);
-            String title=(String) tblServices.getValueAt(rowService,4);
+            String title = (String) tblServices.getValueAt(rowService, 4);
             txtTitleUpdate.setText(title);
-            String details=(String) tblServices.getValueAt(rowService,5);
+            String details = (String) tblServices.getValueAt(rowService, 5);
             txtDetailsUpdate.setText(details);
-            int days=(Integer)tblServices.getValueAt(rowService,6);
-            String daysString= String.valueOf(days);
+            int days = (Integer) tblServices.getValueAt(rowService, 6);
+            String daysString = String.valueOf(days);
             txtDaysUpdate.setText(daysString);
-           String date = (String) tblServices.getValueAt(rowService, 7);
+            String date = (String) tblServices.getValueAt(rowService, 7);
             txtDeliveryDate.setText(date);
 
-            String cmb=(String) tblServices.getValueAt(rowService,8);
+            String cmb = (String) tblServices.getValueAt(rowService, 8);
 
 
-                cmbStatus.setSelectedIndex(0);
+            cmbStatus.setSelectedIndex(0);
 
-                cmbStatus.setSelectedItem(cmb);
+            cmbStatus.setSelectedItem(cmb);
 
-            Double price=(Double)tblServices.getValueAt(rowService,9);
-            String priceSting=String.valueOf(price);
+            Double price = (Double) tblServices.getValueAt(rowService, 9);
+            String priceSting = String.valueOf(price);
             txtPriceUpdate2.setText(priceSting);
-    pack();
-    }
-        DefaultComboBoxModel cmbmodel () {
+            pack();
+        }
+
+
+     DefaultComboBoxModel cmbmodel () {
             String[] statuslist = new String[4];
             statuslist[0] = "0-Just received";
             statuslist[1] = "1-In Repair";
@@ -232,7 +250,9 @@ public class Services extends Base {
             return comboBoxModel;
         }
 
-        private void btnUpdateClik(ActionEvent e) {
+
+     private void btnUpdateClik(ActionEvent e) {
+            isPressed_btnUpdate=true;
             Service service = fncValidateService();
             if (service != null) {
                 int status = serviceImpl.serviceUpdate(service);
@@ -243,21 +263,22 @@ public class Services extends Base {
                     textClear();
 
                 }
-            }else{
-                System.out.println("hfhfhhfhfhf");
             }
         }
-        public void textClear(){
+
+
+     public void textClear(){
         txtPriceUpdate2.setText("");
         txtDeliveryDate.setText("");
         txtDaysUpdate.setText("");
         txtTitleUpdate.setText("");
         txtDetailsUpdate.setText("");
-            cmbStatus.setSelectedIndex(0);
+        cmbStatus.setSelectedIndex(0);
 
          }
 
-         private void btnDelete(ActionEvent e) {
+
+     private void btnDelete(ActionEvent e) {
              row =tblServices.getSelectedRow();
              if (row == -1) {
                  lblError2.setText("Please select the services you want to delete from the table.");
@@ -274,28 +295,57 @@ public class Services extends Base {
          }
 
 
+     private void txtPriceKeyPressed(KeyEvent e) {
+             char c = e.getKeyChar();
+             if (Character.isLetter(c)) {
+                 txtPrice.setEditable(false);
+                 if(isPressed_btnAdd==true)
+                 lblError2.setText("Please enter only number");
+             } else {
+                 lblError2.setText("");
+                 txtPrice.setEditable(true);
+             }
+         }
 
-                private void txtPriceKeyPressed(KeyEvent e) {
-                    char c=e.getKeyChar();
-                    if(Character.isLetter(c)){
-                        txtPrice.setEditable(false);
-                        lblError2.setText("Please enter only number");
-                    }else{
-                        lblError2.setText("");
-                        txtPrice.setEditable(true);
-                    }
-                }
 
-                private void txtPriceUpdate2KeyPressed(KeyEvent e) {
-                    char c=e.getKeyChar();
-                    if(Character.isLetter(c)){
-                        txtPriceUpdate2.setEditable(false);
-                        lblError2.setText("Please enter only number");
-                    }else{
-                        lblError2.setText("");
-                        txtPriceUpdate2.setEditable(true);
-                    }
-                }
+     private void txtPriceUpdate2KeyPressed(KeyEvent e) {
+            char c = e.getKeyChar();
+            if (Character.isLetter(c)) {
+                txtPriceUpdate2.setEditable(false);
+                if(isPressed_btnUpdate==true)
+                lblError2.setText("Please enter only decimal number");
+            } else {
+                lblError2.setText("");
+                txtPriceUpdate2.setEditable(true);
+            }
+        }
+
+
+     public static String Date(){
+        LocalDate dateObj = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String date = dateObj.format(formatter);
+        return date;
+    }
+
+
+     private void tabbedPane1StateChanged(ChangeEvent e) {
+       /* txtPriceUpdate2.setText("");
+        txtDeliveryDate.setText("");
+        txtDaysUpdate.setText("");
+        txtTitleUpdate.setText("");
+        txtDetailsUpdate.setText("");*/
+        txtPrice.setText("");
+        txtTitle.setText("");
+        txtDays.setText("");
+        txtDetails.setText("");
+        tblCustomer.clearSelection();
+        tblServices.clearSelection();
+
+    }
+
+
+
 
         private void initComponents () {
             // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
@@ -316,6 +366,8 @@ public class Services extends Base {
             txtPrice = new JTextField();
             lblError = new JLabel();
             btnAdd = new JButton();
+            label14 = new JLabel();
+            txtOrderDate = new JTextField();
             label2 = new JLabel();
             panel2 = new JPanel();
             panel5 = new JPanel();
@@ -359,6 +411,7 @@ public class Services extends Base {
                 tabbedPane1.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.lightGray, Color.gray, Color.lightGray, Color.lightGray));
                 tabbedPane1.setForeground(Color.darkGray);
                 tabbedPane1.setBackground(Color.white);
+                tabbedPane1.addChangeListener(e -> tabbedPane1StateChanged(e));
 
                 //======== panel1 ========
                 {
@@ -464,6 +517,20 @@ public class Services extends Base {
                         btnAdd.setBackground(Color.lightGray);
                         btnAdd.addActionListener(e -> btnAddClick(e));
 
+                        //---- label14 ----
+                        label14.setText("Order date :");
+                        label14.setFont(label14.getFont().deriveFont(label14.getFont().getStyle() | Font.BOLD, label14.getFont().getSize() + 2f));
+                        label14.setForeground(Color.darkGray);
+
+                        //---- txtOrderDate ----
+                        txtOrderDate.setFont(txtOrderDate.getFont().deriveFont(txtOrderDate.getFont().getSize() + 2f));
+                        txtOrderDate.addKeyListener(new KeyAdapter() {
+                            @Override
+                            public void keyPressed(KeyEvent e) {
+                                txtPriceKeyPressed(e);
+                            }
+                        });
+
                         GroupLayout panel4Layout = new GroupLayout(panel4);
                         panel4.setLayout(panel4Layout);
                         panel4Layout.setHorizontalGroup(
@@ -473,49 +540,55 @@ public class Services extends Base {
                                     .addGroup(panel4Layout.createParallelGroup()
                                         .addComponent(label5)
                                         .addComponent(label3, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE))
-                                    .addGap(22, 22, 22)
+                                    .addGroup(panel4Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                        .addGroup(GroupLayout.Alignment.LEADING, panel4Layout.createSequentialGroup()
+                                            .addGap(7, 7, 7)
+                                            .addComponent(txtDetails))
+                                        .addGroup(panel4Layout.createSequentialGroup()
+                                            .addGap(1, 1, 1)
+                                            .addComponent(txtTitle, GroupLayout.PREFERRED_SIZE, 234, GroupLayout.PREFERRED_SIZE)
+                                            .addGap(12, 12, 12)
+                                            .addComponent(label6, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(txtDays, GroupLayout.PREFERRED_SIZE, 67, GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(label7, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
+                                            .addGap(12, 12, 12)
+                                            .addComponent(txtPrice, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
+                                            .addGap(12, 12, 12)
+                                            .addComponent(label14)
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(txtOrderDate, GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))))
+                                .addGroup(panel4Layout.createSequentialGroup()
                                     .addGroup(panel4Layout.createParallelGroup()
                                         .addGroup(panel4Layout.createSequentialGroup()
-                                            .addGap(35, 35, 35)
-                                            .addComponent(lblError, GroupLayout.PREFERRED_SIZE, 555, GroupLayout.PREFERRED_SIZE)
-                                            .addContainerGap(136, Short.MAX_VALUE))
+                                            .addGap(306, 306, 306)
+                                            .addComponent(btnAdd, GroupLayout.PREFERRED_SIZE, 188, GroupLayout.PREFERRED_SIZE))
                                         .addGroup(panel4Layout.createSequentialGroup()
-                                            .addGroup(panel4Layout.createParallelGroup()
-                                                .addGroup(GroupLayout.Alignment.TRAILING, panel4Layout.createSequentialGroup()
-                                                    .addComponent(txtTitle, GroupLayout.PREFERRED_SIZE, 279, GroupLayout.PREFERRED_SIZE)
-                                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                                                    .addComponent(label6, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(18, 18, 18)
-                                                    .addComponent(txtDays, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(49, 49, 49)
-                                                    .addComponent(label7, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(18, 18, 18)
-                                                    .addComponent(txtPrice, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE))
-                                                .addComponent(txtDetails, GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE))
-                                            .addContainerGap())))
-                                .addGroup(panel4Layout.createSequentialGroup()
-                                    .addGap(306, 306, 306)
-                                    .addComponent(btnAdd, GroupLayout.PREFERRED_SIZE, 188, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 312, Short.MAX_VALUE))
+                                            .addGap(118, 118, 118)
+                                            .addComponent(lblError, GroupLayout.PREFERRED_SIZE, 555, GroupLayout.PREFERRED_SIZE)))
+                                    .addGap(0, 133, Short.MAX_VALUE))
                         );
                         panel4Layout.setVerticalGroup(
                             panel4Layout.createParallelGroup()
                                 .addGroup(panel4Layout.createSequentialGroup()
                                     .addGap(16, 16, 16)
                                     .addGroup(panel4Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                        .addComponent(label3, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtTitle, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
                                         .addComponent(txtDays, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
                                         .addComponent(label6, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(label7, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtTitle, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
                                         .addComponent(txtPrice, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(label3, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(label7, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(label14, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtOrderDate, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))
                                     .addGap(18, 18, 18)
                                     .addGroup(panel4Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                         .addComponent(label5, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
                                         .addComponent(txtDetails, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
-                                    .addGap(18, 18, 18)
-                                    .addComponent(lblError, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(lblError, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
                                     .addComponent(btnAdd, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
                                     .addContainerGap(13, Short.MAX_VALUE))
                         );
@@ -534,16 +607,13 @@ public class Services extends Base {
                                 .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                                     .addComponent(panel4, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(GroupLayout.Alignment.LEADING, panel1Layout.createSequentialGroup()
-                                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                            .addGroup(GroupLayout.Alignment.LEADING, panel1Layout.createSequentialGroup()
-                                                .addGap(9, 9, 9)
-                                                .addComponent(label2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(txtCustomerSearch, GroupLayout.PREFERRED_SIZE, 577, GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(GroupLayout.Alignment.LEADING, panel1Layout.createSequentialGroup()
-                                                .addContainerGap()
-                                                .addComponent(panel3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(0, 27, Short.MAX_VALUE)))
+                                        .addGap(9, 9, 9)
+                                        .addComponent(label2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtCustomerSearch, GroupLayout.PREFERRED_SIZE, 577, GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(GroupLayout.Alignment.LEADING, panel1Layout.createSequentialGroup()
+                                        .addContainerGap()
+                                        .addComponent(panel3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
                                 .addContainerGap())
                     );
                     panel1Layout.setVerticalGroup(
@@ -557,7 +627,7 @@ public class Services extends Base {
                                 .addComponent(panel3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(panel4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(24, Short.MAX_VALUE))
+                                .addContainerGap(23, Short.MAX_VALUE))
                     );
                 }
                 tabbedPane1.addTab("New", panel1);
@@ -835,6 +905,8 @@ public class Services extends Base {
         private JTextField txtPrice;
         private JLabel lblError;
         private JButton btnAdd;
+        private JLabel label14;
+        private JTextField txtOrderDate;
         private JLabel label2;
         private JPanel panel2;
         private JPanel panel5;

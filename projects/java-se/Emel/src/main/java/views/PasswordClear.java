@@ -20,10 +20,12 @@ import javax.swing.GroupLayout;
 public class PasswordClear extends Base {
     UserImpl user=new UserImpl();
 
+
     public PasswordClear() {
 
         initComponents();
-        lblpassword.setText("Mustafa Gültekin");
+        String userName=user.userSingle(Login.email);
+        lblpassword.setText(userName);
     }
 
     private void btnSaveClick(ActionEvent e) {
@@ -33,7 +35,12 @@ public class PasswordClear extends Base {
         User us=new User(Login.email,password);
         int i=user.userUpdate(us);
         if(i>0){
+            if(password.equals("")){
+            lblError.setText("Password can not be empty !!!!!");
+        }else{lblError.setText("");
             JOptionPane.showMessageDialog(this,"Update password process is successuful");
+            dispose();
+        }
         }
     }
 
@@ -47,6 +54,10 @@ public class PasswordClear extends Base {
         label1 = new JLabel();
         button1 = new JButton();
         lblpassword = new JLabel();
+        label5 = new JLabel();
+        label4 = new JLabel();
+        label2 = new JLabel();
+        lblError = new JLabel();
 
         //======== this ========
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -63,54 +74,98 @@ public class PasswordClear extends Base {
 
         //---- label1 ----
         label1.setText("New Password ");
-        label1.setFont(label1.getFont().deriveFont(label1.getFont().getStyle() | Font.BOLD, label1.getFont().getSize() + 3f));
+        label1.setFont(label1.getFont().deriveFont(label1.getFont().getStyle() | Font.BOLD, label1.getFont().getSize() + 4f));
         label1.setBackground(Color.darkGray);
+        label1.setForeground(Color.darkGray);
 
         //---- button1 ----
-        button1.setText("Save");
         button1.setFont(button1.getFont().deriveFont(button1.getFont().getStyle() | Font.BOLD, button1.getFont().getSize() + 8f));
         button1.setIcon(new ImageIcon(getClass().getResource("/save.png")));
-        button1.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.gray, Color.gray, Color.gray, Color.gray));
-        button1.setBackground(Color.lightGray);
+        button1.setBorder(new BevelBorder(BevelBorder.LOWERED, Color.lightGray, Color.lightGray, Color.gray, Color.lightGray));
+        button1.setBackground(new Color(255, 199, 11));
+        button1.setText("SAVE");
+        button1.setForeground(Color.white);
         button1.addActionListener(e -> btnSaveClick(e));
 
         //---- lblpassword ----
         lblpassword.setForeground(Color.darkGray);
-        lblpassword.setText("Sn Mustafa G\u00fcltekin");
+        lblpassword.setFont(lblpassword.getFont().deriveFont(lblpassword.getFont().getSize() + 1f));
+        lblpassword.setHorizontalAlignment(SwingConstants.RIGHT);
+
+        //---- label5 ----
+        label5.setText("LOGIN");
+        label5.setFont(new Font("Segoe UI", Font.BOLD, 25));
+        label5.setForeground(new Color(79, 77, 77));
+
+        //---- label4 ----
+        label4.setText("USER");
+        label4.setFont(new Font("Segoe UI", Font.BOLD, 25));
+        label4.setForeground(new Color(255, 191, 43));
+
+        //---- label2 ----
+        label2.setIcon(new ImageIcon(getClass().getResource("/userlogin.png")));
+        label2.setHorizontalAlignment(SwingConstants.CENTER);
+        label2.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        label2.setBackground(Color.lightGray);
+
+        //---- lblError ----
+        lblError.setText("  ");
+        lblError.setHorizontalAlignment(SwingConstants.CENTER);
+        lblError.setForeground(Color.red);
+        lblError.setFont(new Font("Segoe UI", Font.BOLD, 16));
 
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup()
-                .addGroup(contentPaneLayout.createSequentialGroup()
-                    .addGap(129, 129, 129)
-                    .addComponent(button1, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 140, Short.MAX_VALUE))
                 .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-                    .addContainerGap(102, Short.MAX_VALUE)
+                    .addContainerGap(176, Short.MAX_VALUE)
                     .addGroup(contentPaneLayout.createParallelGroup()
-                        .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-                            .addComponent(label1, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
-                            .addGap(134, 134, 134))
-                        .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-                            .addComponent(txtnewpassword, GroupLayout.PREFERRED_SIZE, 201, GroupLayout.PREFERRED_SIZE)
-                            .addGap(95, 95, 95))
-                        .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-                            .addComponent(lblpassword, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap())))
+                        .addGroup(contentPaneLayout.createParallelGroup()
+                            .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
+                                .addComponent(lblpassword, GroupLayout.PREFERRED_SIZE, 180, GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())
+                            .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
+                                .addComponent(label4, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(label5, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE)
+                                .addGap(156, 156, 156)))
+                        .addGroup(contentPaneLayout.createSequentialGroup()
+                            .addGap(15, 15, 15)
+                            .addGroup(contentPaneLayout.createParallelGroup()
+                                .addComponent(label2, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(label1, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)))))
+                .addGroup(contentPaneLayout.createSequentialGroup()
+                    .addGap(0, 113, Short.MAX_VALUE)
+                    .addGroup(contentPaneLayout.createParallelGroup()
+                        .addComponent(txtnewpassword, GroupLayout.PREFERRED_SIZE, 270, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(button1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addContainerGap(105, Short.MAX_VALUE))
+                .addGroup(contentPaneLayout.createSequentialGroup()
+                    .addGap(23, 23, 23)
+                    .addComponent(lblError, GroupLayout.PREFERRED_SIZE, 438, GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 27, Short.MAX_VALUE))
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
                 .addGroup(contentPaneLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(lblpassword, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
-                    .addGap(39, 39, 39)
-                    .addComponent(label1, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblpassword, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
+                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(label5)
+                        .addComponent(label4))
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(label2, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
+                    .addGap(33, 33, 33)
+                    .addComponent(label1, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                    .addGap(26, 26, 26)
                     .addComponent(txtnewpassword, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
-                    .addComponent(button1, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-                    .addGap(51, 51, 51))
+                    .addGap(3, 3, 3)
+                    .addComponent(lblError)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(button1, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(79, Short.MAX_VALUE))
         );
         pack();
         setLocationRelativeTo(getOwner());
@@ -122,5 +177,9 @@ public class PasswordClear extends Base {
     private JLabel label1;
     private JButton button1;
     private JLabel lblpassword;
+    private JLabel label5;
+    private JLabel label4;
+    private JLabel label2;
+    private JLabel lblError;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

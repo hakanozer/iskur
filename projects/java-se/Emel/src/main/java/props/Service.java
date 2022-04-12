@@ -8,15 +8,14 @@ public class Service {
      private int days;
      private String date;
      private int status;
-
      private double price;
     private Customer customer;
-
+    private String orderDate;
 
     public Service() {
     }
 
-    public Service(int sid, int cid, String title, String info, int days, String date, int status, double price, Customer customer) {
+    public Service(int sid, int cid, String title, String info, int days, String date, int status, double price, Customer customer,String orderDate) {
         this.sid = sid;
         this.cid = cid;
         this.title = title;
@@ -26,9 +25,10 @@ public class Service {
         this.status = status;
         this.price = price;
         this.customer = customer;
+        this.orderDate=orderDate;
     }
 
-    public Service(int sid, int cid, String title, String info, int days, String date, int status, double price) {
+    public Service(int sid, int cid, String title, String info, int days, String date, int status, double price,String orderDate) {
         this.sid = sid;
         this.cid = cid;
         this.title = title;
@@ -37,7 +37,17 @@ public class Service {
         this.date = date;
         this.status = status;
         this.price = price;
+        this.orderDate=orderDate;
     }
+
+    public String getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(String orderDate) {
+        this.orderDate = orderDate;
+    }
+
     public Customer getCustomer() {
         return customer;
     }
