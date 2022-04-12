@@ -1,0 +1,125 @@
+JFDML JFormDesigner: "7.0.5.1.409" Java: "11.0.13" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {space :::p, par l {seq l {par l {seq l {comp label1:::p:404:p, space :p:36:p, comp lblName:::::x}, seq l {par l {seq {par l {comp label2::l:p::p, comp label5::l:p::p}, space s:::p, par l:::p {comp txtCid::::277:x, comp cmbDays::::277:x}}, seq {comp label8:::p::p, space u:::p, comp scrollPane4:::::x}}, space u:::p, par l {seq {par l {comp label6:::p::p, comp label3:::p::p}, space :0:0:x}, comp label7:::::x}, space s:::p, par l {seq {comp btnAdd:::p:48:p, space :p:18:p, comp btnUpdate:::p:47:p, space s:::p, comp btnDelete:::p:47:p, space u:::p, comp lblError:::::x}, seq {par l {comp txtTitle::l:p:288:p, comp cmbStatus::l:p:273:p, comp txtPrice:::p:273:p}, space :0:0:x}}}, seq {par l {seq l {comp label4:::p::p, space s:::p, comp txtSearch:::p:576:p}, comp scrollPane1::l:p:685:p}, space :0:0:x}}, space :::p}, seq t {par t {comp scrollPane5::l:::x, seq t {comp label9:::p::p, space :::x, comp txtSearchService:::p:576:p}}, space :p:15:p}}}}"
+			"$verticalGroup": "par l {seq l {space :::p, par b {comp label1::b:p::p, comp lblName::b:p::p}, space s:::p, par b {comp label4::b:p::p, comp txtSearch::b:p::p}, space s:::p, comp scrollPane1:::p:134:p, space s:::p, par b {comp label5::b:p::p, comp txtCid::b:p::p, comp label6::b:p::p, comp txtTitle::b:p::p}, par l:::p {seq l {par b {comp label2::b:p::p, comp cmbDays::b:p::p, comp label3::b:p::p}, space s:::p, par l {comp label8:::p::p, comp scrollPane4:::::x}}, seq l {space :::p, comp cmbStatus:::p::p, space :::p, par b {comp txtPrice::b:p::p, comp label7::b:p::p}, space :::p, par l {comp lblError::l:p:38:p, seq l {space :p:4:p, par l {comp btnUpdate:::p::p, comp btnDelete::l:p::p, comp btnAdd::l:p::p}}}}}, space s:::p, par b {comp txtSearchService::b:p::p, comp label9::b:p::p}, space s:::p, comp scrollPane5:::p:99:p, space ::13:x}}"
+		} ) {
+			name: "this"
+			"resizable": false
+			addEvent( new FormEvent( "java.awt.event.WindowListener", "windowClosing", "thisWindowClosing", true ) )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Technical Service"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblName"
+				"text": "text"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label4"
+				"text": "Customer Search :"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "txtSearch"
+				addEvent( new FormEvent( "java.awt.event.KeyListener", "keyReleased", "searchKeyReleased", true ) )
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "tblCustomer"
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "tblCustomerMouseClicked", true ) )
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label5"
+				"text": "Cid :"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "txtCid"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label6"
+				"text": "Title :"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "txtTitle"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "Days :"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": " Status :"
+			} )
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "cmbDays"
+			} )
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "cmbStatus"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "txtPrice"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnAdd"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/addBtnIcon.png" )
+				"focusable": false
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnAddClick", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnUpdate"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/updateBtnIcon.png" )
+				"focusable": false
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnUpdateServiceClick", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnDelete"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/deleteBtnIcon.png" )
+				"focusable": false
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnDeleteServiceClick", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblError"
+				"foreground": new java.awt.Color( 255, 51, 51, 255 )
+				"text": "text"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label7"
+				"text": "price"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label8"
+				"text": "Detail :"
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane4"
+				add( new FormComponent( "javax.swing.JTextArea" ) {
+					name: "txtInfo"
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label9"
+				"text": "Service Search :"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "txtSearchService"
+				addEvent( new FormEvent( "java.awt.event.KeyListener", "keyReleased", "searchKeyReleased", true ) )
+				addEvent( new FormEvent( "java.awt.event.KeyListener", "keyReleased", "txtSearchServiceKeyReleased", true ) )
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane5"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "tblService"
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "tblServiceMouseClicked", true ) )
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 700, 600 )
+		} )
+	}
+}

@@ -3,11 +3,20 @@ package props;
 public class User {
     private int uid;
     private String name;
-    private String surname;
+    private  String surname;
     private String email;
     private String password;
 
-    public User() {
+    public User(){
+
+    }
+
+    public User(int uid, String name, String surname, String email, String password) {
+        this.uid = uid;
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.password = password;
     }
 
     public int getUid() {
@@ -33,7 +42,6 @@ public class User {
     public void setSurname(String surname) {
         this.surname = surname;
     }
-
     public String getEmail() {
         return email;
     }
@@ -59,13 +67,5 @@ public class User {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 '}';
-    }
-
-    public User(int uid, String name, String surname, String email, String password) {
-        this.uid = uid;
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-        this.password = password;
     }
 }
