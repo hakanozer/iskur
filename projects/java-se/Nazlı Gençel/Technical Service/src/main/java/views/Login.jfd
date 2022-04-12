@@ -1,0 +1,51 @@
+JFDML JFormDesigner: "7.0.5.4.420" Java: "11.0.13" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {par l {seq {space :::p, par l {comp label2:::p:50:p, comp label3::l:p::p}, space :p:25:p, par l {comp lblError::l:p::p, comp txtPassword::l:p:278:p, comp txtEmail::l:p:278:p}}, seq l {space :p:186:p, comp label1:::p::p}, seq l {space :p:177:p, comp btnLoginClick:::p::p}}, space ::89:x}}"
+			"$verticalGroup": "par l {seq l {space :p:34:p, comp label1:::p::p, space :p:37:p, par b {comp label2::b:p::p, comp txtEmail::b:p:41:p}, par l {seq {space :p:28:p, comp label3:::p::p}, seq {space s:::p, comp txtPassword:::p:40:p}}, space :::p, comp lblError:::p::p, space u:::p, comp btnLoginClick:::p:44:p, space ::26:x}}"
+		} ) {
+			name: "this"
+			"resizable": false
+			"defaultCloseOperation": 2
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/login_icon.png" )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "E-Mail"
+				"foreground": new java.awt.Color( 0, 0, 0, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "Password"
+				"foreground": new java.awt.Color( 0, 0, 0, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "txtEmail"
+				addEvent( new FormEvent( "java.awt.event.KeyListener", "keyReleased", "txtEmailKeyReleased", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JPasswordField" ) {
+				name: "txtPassword"
+				addEvent( new FormEvent( "java.awt.event.KeyListener", "keyReleased", "txtPasswordKeyReleased", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblError"
+				"text": " "
+				"foreground": new java.awt.Color( 153, 0, 0, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnLoginClick"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/login_btn_icon.png" )
+				"background": new java.awt.Color( 102, 102, 102, 255 )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnLoginClick", true ) )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 450, 370 )
+		} )
+	}
+}

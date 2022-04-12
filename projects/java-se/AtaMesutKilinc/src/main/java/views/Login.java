@@ -4,6 +4,7 @@
 
 package views;
 
+import Utils.Mail;
 import models.UserImpl;
 
 import java.awt.*;
@@ -39,6 +40,16 @@ public class Login extends Base {
         initComponents();
         txtEmail.setText("ata@mail.com"); //dolu getir.
         txtPassword.setText("12345");
+
+        //Mail atmak için
+
+//        //from, password, to, subject, message
+//        Mail.send(
+//                "ata_0123@hotmail.com",
+//                "JAVA SUBJECT",
+//                "İleti Mesajı"
+//
+//        );
     }
 
     private void btnLoginClick(ActionEvent e) {
