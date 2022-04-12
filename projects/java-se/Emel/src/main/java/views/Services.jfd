@@ -18,9 +18,10 @@ new FormModel {
 				"border": new javax.swing.border.BevelBorder( 1, sfield java.awt.Color lightGray, sfield java.awt.Color gray, sfield java.awt.Color lightGray, sfield java.awt.Color lightGray )
 				"foreground": sfield java.awt.Color darkGray
 				"background": sfield java.awt.Color white
+				addEvent( new FormEvent( "javax.swing.event.ChangeListener", "stateChanged", "tabbedPane1StateChanged", true ) )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq t {par t {comp panel4::l:::x, seq l {par t {seq l {space :p:9:p, comp label2:::::x, space s:::p, comp txtCustomerSearch:::p:577:p}, seq l {space :::p, comp panel3:::p::p}}, space :0:27:x}}, space :::p}}"
-					"$verticalGroup": "par l {seq {space :::p, par b {comp label2::b:p:38:p, comp txtCustomerSearch::b:p:38:p}, space s:::p, comp panel3:::p::p, space u:::p, comp panel4:::p::p, space ::24:x}}"
+					"$horizontalGroup": "par l {seq t {par t {comp panel4::l:::x, seq l {space :p:9:p, comp label2:::::x, space s:::p, comp txtCustomerSearch:::p:577:p}, seq l {space :::p, comp panel3:::p::p}}, space :::p}}"
+					"$verticalGroup": "par l {seq {space :::p, par b {comp label2::b:p:38:p, comp txtCustomerSearch::b:p:38:p}, space s:::p, comp panel3:::p::p, space u:::p, comp panel4:::p::p, space ::23:x}}"
 				} ) {
 					name: "panel1"
 					"maximumSize": new java.awt.Dimension( 40, 50 )
@@ -47,8 +48,8 @@ new FormModel {
 						} )
 					} )
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-						"$horizontalGroup": "par l {seq {space :::p, par l {comp label5:::p::p, comp label3::l:p:47:p}, space :p:22:p, par l {seq l {space :p:35:p, comp lblError:::p:555:p, space ::136:x}, seq {par l {seq t {comp txtTitle:::p:279:p, space ::29:x, comp label6:::p:48:p, space s:::p, comp txtDays:::p:110:p, space :p:49:p, comp label7:::p:51:p, space s:::p, comp txtPrice:::p:118:p}, comp txtDetails::l::720:x}, space :::p}}}, seq l {space :p:306:p, comp btnAdd:::p:188:p, space :0:312:x}}"
-						"$verticalGroup": "par l {seq l {space :p:16:p, par b {comp txtDays::b:p:39:p, comp label6::b:p:39:p, comp label7::b:p:39:p, comp txtTitle::b:p:39:p, comp txtPrice::b:p:39:p, comp label3::b:p:36:p}, space s:::p, par b {comp label5::b:p:31:p, comp txtDetails::b:p:38:p}, space s:::p, comp lblError:::p:21:p, space u:::p, comp btnAdd:::p:42:p, space ::13:x}}"
+						"$horizontalGroup": "par l {seq {space :::p, par l {comp label5:::p::p, comp label3::l:p:47:p}, par t {seq {space :p:7:p, comp txtDetails:::::x}, seq {space :p:1:p, comp txtTitle:::p:234:p, space :p:12:p, comp label6:::p:48:p, space :::p, comp txtDays:::p:67:p, space u:::p, comp label7:::p:51:p, space :p:12:p, comp txtPrice:::p:62:p, space :p:12:p, comp label14:::p::p, space :::p, comp txtOrderDate::::147:x}}}, seq {par l {seq {space :p:306:p, comp btnAdd:::p:188:p}, seq l {space :p:118:p, comp lblError:::p:555:p}}, space :0:133:x}}"
+						"$verticalGroup": "par l {seq l {space :p:16:p, par b {comp label3::b:p:36:p, comp txtTitle::b:p:39:p, comp txtDays::b:p:39:p, comp label6::b:p:39:p, comp txtPrice::b:p:39:p, comp label7::b:p:39:p, comp label14::b:p:39:p, comp txtOrderDate::b:p:39:p}, space s:::p, par b {comp label5::b:p:31:p, comp txtDetails::b:p:38:p}, space u:::p, comp lblError:::p:21:p, space :p:18:p, comp btnAdd:::p:42:p, space ::13:x}}"
 					} ) {
 						name: "panel4"
 						"border": new javax.swing.border.TitledBorder( new javax.swing.border.BevelBorder( 1, sfield java.awt.Color lightGray, sfield java.awt.Color lightGray, sfield java.awt.Color gray, sfield java.awt.Color lightGray ), "Service General Information", 4, 0, new java.awt.Font( "Segoe UI", 1, 15 ), sfield java.awt.Color darkGray )
@@ -86,12 +87,12 @@ new FormModel {
 						add( new FormComponent( "javax.swing.JLabel" ) {
 							name: "label7"
 							"text": "Price :"
-							"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 2, false )
+							"font": &SwingDerivedFont0 new com.jformdesigner.model.SwingDerivedFont( null, 1, 2, false )
 							"foreground": sfield java.awt.Color darkGray
 						} )
 						add( new FormComponent( "javax.swing.JTextField" ) {
 							name: "txtPrice"
-							"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 2, false )
+							"font": &SwingDerivedFont1 new com.jformdesigner.model.SwingDerivedFont( null, 0, 2, false )
 							addEvent( new FormEvent( "java.awt.event.KeyListener", "keyPressed", "txtPriceKeyPressed", true ) )
 						} )
 						add( new FormComponent( "javax.swing.JLabel" ) {
@@ -108,6 +109,17 @@ new FormModel {
 							"border": new javax.swing.border.BevelBorder( 1, sfield java.awt.Color lightGray, sfield java.awt.Color gray, sfield java.awt.Color gray, null )
 							"background": sfield java.awt.Color lightGray
 							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnAddClick", true ) )
+						} )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "label14"
+							"text": "Order date :"
+							"font": #SwingDerivedFont0
+							"foreground": sfield java.awt.Color darkGray
+						} )
+						add( new FormComponent( "javax.swing.JTextField" ) {
+							name: "txtOrderDate"
+							"font": #SwingDerivedFont1
+							addEvent( new FormEvent( "java.awt.event.KeyListener", "keyPressed", "txtPriceKeyPressed", true ) )
 						} )
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {

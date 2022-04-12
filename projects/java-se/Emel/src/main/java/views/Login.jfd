@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {par l {seq l {space :p:192:p, comp label1:::p:117:p}, seq l {space :p:221:p, comp label2:::p:59:p}}, space :::x}, seq {space :p:264:p, comp label6:::::x, space :p:103:p}, seq t {space :0:0:x, par l {seq t {comp label3:::p:80:p, space :p:199:p}, seq t {comp lblError:::p:438:p, space :p:22:p}}}, seq t {space :::x, par l {seq t {par t:::p {comp txtPassword::::313:x, comp txtEmail::::313:x}, space :p:81:p}, seq t {comp label4:::p:72:p, space :::p, comp label5:::p:84:p, space :p:146:p}, seq t {comp btnLogin:::p:306:p, space :p:82:p}}}}"
-			"$verticalGroup": "par l {seq l {space :::p, par b {comp label5::b:p::p, comp label4::b:p::p}, space :::p, comp label1:::p:140:p, space s:::p, comp label2:::p::p, space u:::p, comp txtEmail:::p:42:p, space s:::p, comp label3:::p:26:p, space :p:18:p, comp txtPassword:::p:40:p, space :::p, comp lblError:::p::p, space u:::p, comp label6:::p::p, space u:::p, comp btnLogin:::p:46:p, space ::19:x}}"
+			"$horizontalGroup": "par l {seq {space :p:192:p, comp label1:::p:117:p, space ::179:x}, seq t {space ::26:x, par l {par l:t {seq {space :p:6:p, par l {seq t {comp label4:::p:72:p, space :::p, comp label5:::p:84:p, space :p:146:p}, seq t {comp btnLogin:::p:306:p, space :p:82:p}, seq t {comp label2:::p:59:p, space :p:208:p}}}, comp txtPassword::l:p:313:p, comp txtEmail::l:p:313:p}, seq t {comp label3:::p:80:p, space :p:197:p}, seq t {comp lblError:::p:438:p, space :p:24:p}, seq t {comp label6:::p::p, space :p:91:p}}}}"
+			"$verticalGroup": "par l {seq l {space :::p, par b {comp label5::b:p::p, comp label4::b:p::p}, space :::p, comp label1:::p:140:p, space s:::p, comp label2:::p::p, space u:::p, comp txtEmail:::p:42:p, space :p:18:p, comp label3:::p:26:p, space u:::p, comp txtPassword:::p:40:p, space :::p, comp lblError:::p::p, space :::p, comp label6:::p::p, space :p:24:p, comp btnLogin:::p:46:p, space ::19:x}}"
 		} ) {
 			name: "this"
 			"background": new java.awt.Color( 0, 255, 255, 255 )
@@ -33,7 +33,7 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JTextField" ) {
 				name: "txtEmail"
-				"text": "mustafa@gmail.com"
+				"text": "nurullah@gmail.com"
 				"font": new java.awt.Font( "Segoe UI", 0, 16 )
 				addEvent( new FormEvent( "java.awt.event.KeyListener", "keyReleased", "txtEmailKeyReleased", true ) )
 			} )

@@ -12,9 +12,8 @@ User {
     private String password;
 
     public User() {
-
-
     }
+
 
     public User(int uid, String name, String surname, String email, String password) {
         this.uid = uid;
