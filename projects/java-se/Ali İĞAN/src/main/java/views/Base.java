@@ -5,6 +5,7 @@ import java.awt.*;
 
 public class Base extends JFrame {
     @Override
-    //public void setBackground(Color bgColor) {super.getContentPane().setBackground(Color.CYAN);}
-    public void setBackground(Color bgColor) {super.getContentPane().setBackground(Color.LIGHT_GRAY);}
+    public void setBackground(Color bgColor) {
+        super.getContentPane().setBackground(Color.GRAY);
+    }
 }

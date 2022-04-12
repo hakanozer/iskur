@@ -21,6 +21,8 @@ import javax.swing.GroupLayout;
  */
 public class Services extends Base {
     ServiceImpl serviceImpl=new ServiceImpl();
+    DefaultComboBoxModel modelCombo= new DefaultComboBoxModel<>();
+    String[] cboxitems ={"Product Just Arrived","Product In Repair","Product Has Been Repaired","Product Delivered"};
     int row=-1;
     int rowService=-1;
     int value; //cid
@@ -30,6 +32,8 @@ public class Services extends Base {
     public Services() {
         initComponents();
         lblName.setText("Sn "+ UserImpl.name);
+        fncComboDataResult();
+        cmbStatus.setSelectedItem(0);
         tblCustomer.setModel(serviceImpl.serviceCustomerTable(null));
         tblService.setModel(serviceImpl.serviceTable(0));
 
@@ -48,11 +52,14 @@ public class Services extends Base {
         String phone= String.valueOf(tblCustomer.getValueAt(row,4));
         String address= String.valueOf(tblCustomer.getValueAt(row,5));
         System.out.println("val "+ value);
+        cmbStatus.setSelectedIndex(0);
         return value;
 
 
     }
+
     public int rowValueService(int colomn){
+
         int column = colomn; //1. kolondakini al.
         rowService = tblService.getSelectedRow(); //seçili olan row u getir.  //dizi elemanı gibi 0 dan başlar row
         serviceValueSid =  (int) tblService.getModel().getValueAt(rowService, column);
@@ -75,11 +82,12 @@ public class Services extends Base {
         txtDetails.setText(info);
         txtPrice.setText(price);
         txtDays.setText(days);
-//        cbxStatus.setSelectedItem();
+        cmbStatus.setSelectedItem(status);
         return serviceValueSid;
 
 
     }
+
     public int rowValueServiceCid(int colomn){
         int column = colomn; //1. kolondakini al.
         rowService = tblService.getSelectedRow(); //seçili olan row u getir.  //dizi elemanı gibi 0 dan başlar row
@@ -99,10 +107,15 @@ public class Services extends Base {
         System.out.println("cid"+ serviceValueCid);
 
 
+
+//        int s= (int) cmbStatus.getModel().getSelectedItem(cboxitems);
+        int statusCmb = cmbStatus.getSelectedIndex();
+        System.out.println(statusCmb);
         txtTitle.setText(title);
         txtDetails.setText(info);
         txtPrice.setText(price);
         txtDays.setText(days);
+        cmbStatus.setSelectedIndex(statusCmb);
 //        cbxStatus.setSelectedItem();
         return serviceValueCid;
 
@@ -120,6 +133,8 @@ public class Services extends Base {
         int price= Integer.parseInt(txtPrice.getText().toLowerCase(Locale.ROOT).trim());
         int days= Integer.parseInt(txtDays.getText().toLowerCase(Locale.ROOT).trim());
         String date=Base.Date();
+        int statusCmb = cmbStatus.getSelectedIndex();
+
 
 
         if (title.equals("")){
@@ -149,15 +164,31 @@ public class Services extends Base {
         return null; //eğer customer boşssa null dönecek
 
     }
-    private void btnAddClick(ActionEvent e) {
 
+    private void fncComboDataResult(){
+        //bu fonk tetiklendiğinde ilgili modelin içi datayla dolsun.
+       // modelCombo.addElement("Select Status");  //default değeri
+        for (int i = 0; i < cboxitems.length; i++) {
+            String item= cboxitems[i];
+            modelCombo.addElement(item);
+
+
+        }
+
+        cmbStatus.setModel(modelCombo); //combobox içine modeli attık
+
+
+    }
+
+    private void btnAddClick(ActionEvent e) {
+        cmbStatus.setSelectedItem(0);
         Service service=fncDataValid();
 
            if(service !=null && value !=0){
            int status=serviceImpl.serviceInsert(service);
                System.out.println("Ekleme "+status);
             if (status>0){
-                
+
                 tblService.setModel(serviceImpl.serviceTable(0));
                 System.out.println("Servis ekleme başarılı");
                 txtTitle.setText("");
@@ -187,7 +218,7 @@ public class Services extends Base {
         String info= txtDetails.getText().toLowerCase(Locale.ROOT).trim();
         int price= Integer.parseInt(txtPrice.getText().toLowerCase(Locale.ROOT).trim());
         int days= Integer.parseInt(txtDays.getText().toLowerCase(Locale.ROOT).trim());
-
+        int status= cmbStatus.getSelectedIndex();
 
 
         Service service=fncDataValid();
@@ -198,6 +229,7 @@ public class Services extends Base {
         service.setInfo(info);
         service.setPrice(price);
         service.setDays(days);
+        service.setStatus(status);
         //TODO: combobox
         if (serviceValueSid!=-1){
             int answer=JOptionPane.showConfirmDialog(this,"Are you sure you want to update the customer?","Update Window",JOptionPane.YES_OPTION);//parent component nerede görüneceği this button
@@ -224,6 +256,7 @@ public class Services extends Base {
 
 
     }
+
     private void btnDeleteClick(ActionEvent e) {
         if (serviceValueSid !=-1){
             int answer=JOptionPane.showConfirmDialog(this,"Are you sure you want to delete the service?","Delete Window",JOptionPane.YES_OPTION);//parent component nerede görüneceği this button
@@ -245,6 +278,7 @@ public class Services extends Base {
             //show confirm anlaşmayı kabul etmek istiyor musun.
         }
     }
+
     private void thisWindowClosing(WindowEvent e) {
         new Dashboard().setVisible(true);
     }
@@ -258,22 +292,26 @@ public class Services extends Base {
     }
 
     private void tblCustomerKeyReleased(KeyEvent e) {
+        rowValue();
         txtTitle.setText("");
         txtDetails.setText("");
         txtPrice.setText("");
         txtDays.setText("");
-        rowValue();
+
+
     }
 
     private void tblCustomerMouseClicked(MouseEvent e) {
+        rowValue();
         txtTitle.setText("");
         txtDetails.setText("");
         txtPrice.setText("");
         txtDays.setText("");
-        rowValue();
+
     }
 
     private void tblServiceKeyReleased(KeyEvent e) {
+
         rowValueService(0);
         rowValueServiceCid(5);
 
@@ -286,14 +324,6 @@ public class Services extends Base {
 
 
     }
-
-
-
-
-
-
-
-
 
 
 
@@ -320,7 +350,8 @@ public class Services extends Base {
         txtPrice = new JTextField();
         scrollPane3 = new JScrollPane();
         tblService = new JTable();
-        cbxStatus = new JComboBox();
+        cmbStatus = new JComboBox();
+        label7 = new JLabel();
 
         //======== this ========
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -429,12 +460,15 @@ public class Services extends Base {
                 scrollPane3.setViewportView(tblService);
             }
 
+            //---- label7 ----
+            label7.setText("Status");
+
             GroupLayout panel1Layout = new GroupLayout(panel1);
             panel1.setLayout(panel1Layout);
             panel1Layout.setHorizontalGroup(
                 panel1Layout.createParallelGroup()
                     .addGroup(panel1Layout.createSequentialGroup()
-                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                        .addGroup(panel1Layout.createParallelGroup()
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addGroup(panel1Layout.createParallelGroup()
@@ -451,15 +485,17 @@ public class Services extends Base {
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addComponent(label6, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(scrollPane2))
+                                .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE))
                             .addGroup(panel1Layout.createSequentialGroup()
-                                .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(label5, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-                                    .addComponent(label2, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
-                                .addGap(32, 32, 32)
+                                .addGroup(panel1Layout.createParallelGroup()
+                                    .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(label5, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                                        .addComponent(label2, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(label7, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
                                 .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                                     .addComponent(lblCustomerError, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                                    .addComponent(cbxStatus, GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                    .addComponent(cmbStatus, GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
                                     .addComponent(txtDays, GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
                                     .addComponent(txtPrice, GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))))
                         .addGap(18, 18, 18)
@@ -486,7 +522,9 @@ public class Services extends Base {
                             .addComponent(label2, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtPrice, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(cbxStatus, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                            .addComponent(cmbStatus, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label7, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(lblCustomerError, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
@@ -561,6 +599,7 @@ public class Services extends Base {
     private JTextField txtPrice;
     private JScrollPane scrollPane3;
     private JTable tblService;
-    private JComboBox cbxStatus;
+    private JComboBox cmbStatus;
+    private JLabel label7;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

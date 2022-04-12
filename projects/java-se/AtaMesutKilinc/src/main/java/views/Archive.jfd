@@ -1,0 +1,23 @@
+JFDML JFormDesigner: "7.0.5.4.420" Java: "11.0.13" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq t {space ::536:x, comp lblName:::p:266:p, space :::p}}"
+			"$verticalGroup": "par l {seq l {space :::p, comp lblName:::p:25:p, space ::477:x}}"
+		} ) {
+			name: "this"
+			"resizable": false
+			"title": "Archive"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblName"
+				"text": " "
+				"horizontalAlignment": 4
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 5, 5 )
+			"size": new java.awt.Dimension( 810, 540 )
+		} )
+	}
+}

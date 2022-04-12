@@ -35,8 +35,8 @@ new FormModel {
 				} )
 			} )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {par l:::p {seq l {space :p:6:p, par l {seq {comp btnAdd:::p:50:p, space s:::p, comp btnUpdate:::p:50:p, space s:::p, comp btnDelete:::p:50:p}, seq {comp label4:::p:48:p, space :::p, comp txtTitle:::p:156:p}}}, seq {comp label6:::p:48:p, space s:::p, comp scrollPane2:::::x}, seq l {par t:::p {comp label5::l::34:x, comp label2::l::34:x}, space :p:32:p, par l:::p {comp lblCustomerError::t::150:x, comp cbxStatus::::150:x, comp txtDays::::150:x, comp txtPrice::::150:x}}}, space s:::p, comp scrollPane3::::971:x, space :::p}}"
-				"$verticalGroup": "par l {seq {space :::p, par b {comp label4::b:p:30:p, comp txtTitle::b:p::p}, space s:::p, par l {comp label6:::p:30:p, comp scrollPane2:::p:56:p}, space :p:18:p, par b {comp label5::b:p:28:p, comp txtDays::b:p::p}, space :::p, par b {comp label2::b:p:30:p, comp txtPrice::b:p::p}, space s:::p, comp cbxStatus:::p::p, space s:::p, comp lblCustomerError:::p:30:p, space ::11:x, par t {comp btnAdd:::p::p, comp btnUpdate::t:p::p, comp btnDelete::t:p::p}, space :p:8:p}, seq l {space :p:20:p, comp scrollPane3::::313:x, space :::p}}"
+				"$horizontalGroup": "par l {seq {par l {seq l {space :p:6:p, par l {seq {comp btnAdd:::p:50:p, space s:::p, comp btnUpdate:::p:50:p, space s:::p, comp btnDelete:::p:50:p}, seq {comp label4:::p:48:p, space :::p, comp txtTitle:::p:156:p}}}, seq {comp label6:::p:48:p, space s:::p, comp scrollPane2:::p:150:p}, seq l {par l {par t:::p {comp label5::l::34:x, comp label2::l:::x}, comp label7:::p:48:p}, space :p:18:p, par l:::p {comp lblCustomerError::t::150:x, comp cmbStatus::::150:x, comp txtDays::::150:x, comp txtPrice::::150:x}}}, space s:::p, comp scrollPane3::::971:x, space :::p}}"
+				"$verticalGroup": "par l {seq {space :::p, par b {comp label4::b:p:30:p, comp txtTitle::b:p::p}, space s:::p, par l {comp label6:::p:30:p, comp scrollPane2:::p:56:p}, space :p:18:p, par b {comp label5::b:p:28:p, comp txtDays::b:p::p}, space :::p, par b {comp label2::b:p:30:p, comp txtPrice::b:p::p}, space s:::p, par b {comp cmbStatus::b:p::p, comp label7::b:p:30:p}, space s:::p, comp lblCustomerError:::p:30:p, space ::11:x, par t {comp btnAdd:::p::p, comp btnUpdate::t:p::p, comp btnDelete::t:p::p}, space :p:8:p}, seq l {space :p:20:p, comp scrollPane3::::313:x, space :::p}}"
 			} ) {
 				name: "panel1"
 				add( new FormComponent( "javax.swing.JLabel" ) {
@@ -104,7 +104,11 @@ new FormModel {
 					} )
 				} )
 				add( new FormComponent( "javax.swing.JComboBox" ) {
-					name: "cbxStatus"
+					name: "cmbStatus"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label7"
+					"text": "Status"
 				} )
 			} )
 		}, new FormLayoutConstraints( null ) {
