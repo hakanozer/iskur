@@ -34,7 +34,7 @@ new FormModel {
 				"foreground": new java.awt.Color( 204, 204, 204, 255 )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "txtName"
-					"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 2, false )
+					"font": new java.awt.Font( "Segoe UI", 0, 14 )
 					addEvent( new FormEvent( "java.awt.event.KeyListener", "keyReleased", "txtNameKeyReleased", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
@@ -59,7 +59,7 @@ new FormModel {
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "txtEmail"
-					"font": new java.awt.Font( "Segoe UI", 0, 14 )
+					"font": new java.awt.Font( "Segoe UI", 0, 16 )
 					addEvent( new FormEvent( "java.awt.event.KeyListener", "keyReleased", "txtEmailKeyReleased", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {

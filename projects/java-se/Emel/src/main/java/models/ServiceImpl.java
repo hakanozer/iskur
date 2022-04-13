@@ -81,7 +81,7 @@ public class ServiceImpl implements IService {
             // arama sonuçlarını gönder
             List<Customer> subLs = new ArrayList<>();
             for (Customer item : ls) {
-                if (item.getName().contains(data)
+                if (item.getName().toLowerCase(Locale.ROOT).contains(data)
                         || item.getSurname().toLowerCase(Locale.ROOT).contains(data)
                         || item.getEmail().toLowerCase(Locale.ROOT).contains(data)
                         || item.getPhone().toLowerCase(Locale.ROOT).contains(data)
@@ -107,18 +107,19 @@ public class ServiceImpl implements IService {
          ResultSet rs=null;
         List<Service> servicesList = new ArrayList<>();
         try { if(status1==-1){
-              sql = "Select sid,s.cid,name,surname,phone,title,info,days,date,status,price from services s " +
+              sql = "Select sid,s.cid,name,surname,phone,title,info,days,date,status,price,orderdate from services s " +
                     "join customer c on s.cid = c.cid order by sid desc";
             PreparedStatement pre = db.connect().prepareStatement(sql);
              rs = pre.executeQuery();
            }else{
-            sql="Select sid,s.cid,name,surname,phone,title,info,days,date,status,price from services s " +
+            sql="Select sid,s.cid,name,surname,phone,title,info,days,date,status,price,orderdate from services s " +
                     "join customer c on s.cid = c.cid where status=? order by date desc";
             PreparedStatement pre = db.connect().prepareStatement(sql);
             pre.setInt(1,status1);
              rs = pre.executeQuery();
         }
                while (rs.next()) {
+                   String orderdate=rs.getString("orderdate");
                 int sid = rs.getInt("sid");
                 int cid = rs.getInt("cid");
                 String name=rs.getString("name");
@@ -130,8 +131,9 @@ public class ServiceImpl implements IService {
                 String date = rs.getString("date");
                 int status= rs.getInt("status");
                 double price= rs.getDouble("price");
+
                 Customer csm=new Customer(cid,name,surname,phone);
-                Service s = new Service(sid,cid,title,info,days,date,status,price,csm);
+                Service s = new Service(sid,cid,title,info,days,date,status,price,csm,orderdate);
                 servicesList.add(s);
 
             }
@@ -148,7 +150,7 @@ public class ServiceImpl implements IService {
     public int serviceInsert(Service service) {
         int status=0;
          try{
-             String sql="insert into services values(null,?,?,?,?,?,0,?)";
+             String sql="insert into services values(null,?,?,?,?,?,0,?,?)";
              PreparedStatement pre=db.connect().prepareStatement(sql);
              pre.setInt(1,service.getCid());
              pre.setString(2,service.getTitle());
@@ -156,6 +158,7 @@ public class ServiceImpl implements IService {
              pre.setInt(4,service.getDays());
              pre.setString(5,service.getDate());
              pre.setDouble(6,service.getPrice());
+             pre.setString(7,service.getOrderDate());
              status=pre.executeUpdate();
 
          }catch (Exception ex){
@@ -182,6 +185,7 @@ public class ServiceImpl implements IService {
         tableModel.addColumn("Date");
         tableModel.addColumn("Status");
         tableModel.addColumn("Price");
+        tableModel.addColumn("Order Date");
 
         lst=serviceList(-1);
         for(Service item:lst){
@@ -196,8 +200,17 @@ public class ServiceImpl implements IService {
                 condition="3-Delivered";
             }
 
-            Object[] row={item.getSid(),item.getCid(),item.getCustomer().getName(),item.getCustomer().getSurname(),
-               item.getTitle(),item.getInfo(),item.getDays(),item.getDate(),condition,item.getPrice()};
+            Object[] row={item.getSid(),
+                    item.getCid(),
+                    item.getCustomer().getName(),
+                    item.getCustomer().getSurname(),
+                    item.getTitle(),
+                    item.getInfo(),
+                    item.getDays(),
+                    item.getDate(),
+                    condition,
+                    item.getPrice(),
+                    item.getOrderDate()};
 
             tableModel.addRow(row);
         }
@@ -249,18 +262,17 @@ public class ServiceImpl implements IService {
     @Override
     public DefaultTableModel serviceModelDelivered(String data) {
         lstDelivered=lstSearchDelivered;
-        //List<Service> lst=new ArrayList<>();
+
         DefaultTableModel tableModel=new DefaultTableModel();
         tableModel.addColumn("Service No");
         tableModel.addColumn("First Name");
         tableModel.addColumn("Surname");
         tableModel.addColumn("Phone");
         tableModel.addColumn("Title");
-        tableModel.addColumn("Details");
         tableModel.addColumn("Days");
         tableModel.addColumn("Date");
-        //tableModel.addColumn("Status");
         tableModel.addColumn("Price");
+        tableModel.addColumn("Order Date");
         if (data != null && !data.equals("")) {
             data = data.toLowerCase();
             List<Service> subLs = new ArrayList<>();
@@ -277,19 +289,18 @@ public class ServiceImpl implements IService {
         }
         for(Service item:lstDelivered) {
 
-           //String condition = "3-Delivered";
-
-           Object[] row={item.getSid(),
+            Object[] row = {item.getSid(),
                     item.getCustomer().getName(),
                     item.getCustomer().getSurname(),
                     item.getCustomer().getPhone(),
-                    item.getTitle(),item.getInfo(),
-                    item.getDays(),item.getDate(),
-                    //condition,
-                     item.getPrice()};
+                    item.getTitle(),
+                    item.getDays(),
+                    item.getDate(),
+                    item.getPrice(),
+                    item.getOrderDate()};
 
-            tableModel.addRow(row);
-        }
+            tableModel.addRow(row);}
+
         return tableModel;
     }
 
@@ -305,9 +316,10 @@ public class ServiceImpl implements IService {
         tableModel.addColumn("Title");
         tableModel.addColumn("Status");
         tableModel.addColumn("Price");
+        tableModel.addColumn("Order Date");
         if (data != null && !data.equals("")) {
             data = data.toLowerCase();
-            // arama sonuçlarını gönder
+
             List<Service> subLs = new ArrayList<>();
             //lst=serviceList(1);
             for (Service item : lsService) {
@@ -324,9 +336,14 @@ public class ServiceImpl implements IService {
          for(Service item:lsService) {
              String condition = "In Repair";
 
-             Object[] row = { item.getSid(), item.getCustomer().getName(), item.getCustomer().getSurname(),
+             Object[] row = { item.getSid(),
+                     item.getCustomer().getName(),
+                     item.getCustomer().getSurname(),
                      item.getCustomer().getPhone(),
-                     item.getTitle(), condition, item.getPrice()};
+                     item.getTitle(),
+                     condition,
+                     item.getPrice(),
+                     item.getOrderDate()};
 
             tableModel.addRow(row);
         }
@@ -345,6 +362,7 @@ public class ServiceImpl implements IService {
         tableModel.addColumn("Title");
         tableModel.addColumn("Status");
         tableModel.addColumn("Price");
+        tableModel.addColumn("Order Date");
         if (data != null && !data.equals("")) {
             data = data.toLowerCase();
             // arama sonuçlarını gönder
@@ -366,7 +384,7 @@ public class ServiceImpl implements IService {
 
             Object[] row = { item.getSid(), item.getCustomer().getName(), item.getCustomer().getSurname(),
                     item.getCustomer().getPhone(),
-                    item.getTitle(), condition, item.getPrice()};
+                    item.getTitle(), condition, item.getPrice(),item.getOrderDate()};
 
             tableModel.addRow(row);
         }

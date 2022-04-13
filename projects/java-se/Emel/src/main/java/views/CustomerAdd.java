@@ -36,6 +36,7 @@ public class CustomerAdd extends Base {
         initComponents();
         lblname.setText("Sn. "+ UserImpl.name);
         table1.setModel(cus.tablemodelOlustur());
+        table1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }
 
     private void thisWindowClosing(WindowEvent e) {
@@ -151,7 +152,6 @@ public class CustomerAdd extends Base {
     private void txtSurnameKeyReleased(KeyEvent e) {
         if(e.getKeyCode()==KeyEvent.VK_ENTER){
             txtEmail.requestFocus();
-            //btnAddClick(null);
         }
         textboxIsChanged=true;
     }
@@ -160,7 +160,6 @@ public class CustomerAdd extends Base {
     private void txtEmailKeyReleased(KeyEvent e) {
         if(e.getKeyCode()==KeyEvent.VK_ENTER){
             //btnAddClick(null);
-            txtPhone.requestFocus();
         }
         textboxIsChanged=true;
     }
@@ -318,7 +317,7 @@ public class CustomerAdd extends Base {
             panel1.setForeground(new Color(204, 204, 204));
 
             //---- txtName ----
-            txtName.setFont(txtName.getFont().deriveFont(txtName.getFont().getSize() + 2f));
+            txtName.setFont(new Font("Segoe UI", Font.PLAIN, 14));
             txtName.addKeyListener(new KeyAdapter() {
                 @Override
                 public void keyReleased(KeyEvent e) {
@@ -348,7 +347,7 @@ public class CustomerAdd extends Base {
             label4.setFont(label4.getFont().deriveFont(label4.getFont().getSize() + 2f));
 
             //---- txtEmail ----
-            txtEmail.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+            txtEmail.setFont(new Font("Segoe UI", Font.PLAIN, 16));
             txtEmail.addKeyListener(new KeyAdapter() {
                 @Override
                 public void keyReleased(KeyEvent e) {

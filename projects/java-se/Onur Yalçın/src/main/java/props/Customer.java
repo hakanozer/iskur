@@ -19,13 +19,20 @@ public class Customer {
         this.phone = phone;
         this.address = address;
     }
+    public Customer(int cid, String name, String surname,String email, String phone){
+        this.cid = cid;
+        this.name = name;
+        this.surname= surname;
+        this.email = email;
+        this.phone = phone;
+    }
 
-    public int getCid() {
+    public int getcId() {
         return cid;
     }
 
-    public void setCid(int cid) {
-        this.cid = cid;
+    public void setcId(int cId) {
+        this.cid = cId;
     }
 
     public String getName() {
@@ -71,7 +78,7 @@ public class Customer {
     @Override
     public String toString() {
         return "Customer{" +
-                "cid=" + cid +
+                "cId=" + cid +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +
@@ -79,4 +86,5 @@ public class Customer {
                 ", address='" + address + '\'' +
                 '}';
     }
+
 }

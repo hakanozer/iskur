@@ -8,12 +8,20 @@ public class Service {
     private int days;
     private String date;
     private int status;
-    private int price;
+    private Customer c;
+
+    public Customer getC() {
+        return c;
+    }
+
+    public void setC(Customer c) {
+        this.c = c;
+    }
 
     public Service() {
     }
 
-    public Service(int sid, int cid, String title, String info, int days, String date, int status, int price) {
+    public Service(int sid, int cid, String title, String info, int days, String date, int status) {
         this.sid = sid;
         this.cid = cid;
         this.title = title;
@@ -21,8 +29,17 @@ public class Service {
         this.days = days;
         this.date = date;
         this.status = status;
-        this.price = price;
     }
+
+    public Service(int sid, int cid, String title, String date, int status, Customer c) {
+        this.sid = sid;
+        this.cid = cid;
+        this.title = title;
+        this.date = date;
+        this.status = status;
+        this.c = c;
+    }
+
 
     public int getSid() {
         return sid;
@@ -38,6 +55,14 @@ public class Service {
 
     public void setCid(int cid) {
         this.cid = cid;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getInfo() {
@@ -72,22 +97,6 @@ public class Service {
         this.status = status;
     }
 
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     @Override
     public String toString() {
         return "Service{" +
@@ -98,7 +107,6 @@ public class Service {
                 ", days=" + days +
                 ", date='" + date + '\'' +
                 ", status=" + status +
-                ", price=" + price +
                 '}';
     }
 }

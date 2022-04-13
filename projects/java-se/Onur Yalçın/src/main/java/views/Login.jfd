@@ -4,77 +4,82 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {comp panel2:::p::p, space :::p, comp panel1:::::x}}"
-			"$verticalGroup": "par l {comp panel1:::::x, comp panel2::l:::x}"
+			"$horizontalGroup": "par l {comp panel1::t:::x}"
+			"$verticalGroup": "par l {seq l {comp panel1:::p::p, space :0:0:x}}"
 		} ) {
 			name: "this"
-			"resizable": false
-			"background": new java.awt.Color( 102, 102, 255, 255 )
+			"background": sfield java.awt.Color lightGray
 			"defaultCloseOperation": 2
+			"resizable": false
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq t {space ::148:x, comp label1:::p::p, space :p:98:p}, seq l {space ::17:x, par t:::p {comp lblError::l::329:x, seq l {par l {comp label2::l:p:57:p, comp label3::l:p:57:p}, space :p:30:p, par l:::p {comp txtEmail::::242:x, comp txtPassword::::242:x}}, comp btnLogin::t:p:60:p}, space ::28:x}}"
-				"$verticalGroup": "par l {seq l {space :::p, comp label1:::p:152:p, space :p:41:p, par b {comp label2::b:p:34:p, comp txtEmail::b:p::p}, space :::p, par b {comp label3::b:p::p, comp txtPassword::b:p::p}, space :::p, comp lblError:::p:20:p, space u:::p, comp btnLogin:::p::p, space :::p}}"
+				"$horizontalGroup": "par l {seq l {comp panel2:::p::p, space :::p, comp panel3:::::x}}"
+				"$verticalGroup": "par l {comp panel2::l:::x, comp panel3::t:::x}"
 			} ) {
 				name: "panel1"
-				"background": new java.awt.Color( 73, 241, 157, 255 )
-				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label1"
-					"icon": new com.jformdesigner.model.SwingIcon( 0, "/loginicon.png" )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq {par l {seq {space :p:104:p, comp label1:::p:136:p}, seq l {space :::p, par l {seq l {space :p:9:p, comp label2:::p:46:p}, comp label3:::p:64:p}, space s:::p, par l:::p {par t:l {comp txtEmail:::p:236:p, comp txtPassword:::p:236:p}, seq l {comp lblError:::p:133:p, space :::x, comp btnLogin:::p:53:p}}}}, space ::21:x}}"
+					"$verticalGroup": "par l {seq l {space ::58:x, comp label1:::p:130:p, space :p:51:p, par b {comp label2::b:p:26:p, comp txtEmail::b:p::p}, space s:::p, par b {comp txtPassword::b:p::p, comp label3::b:p:25:p}, space u:::p, par l {comp btnLogin:::p:46:p, comp lblError:::p:29:p}, space :p:103:p}}"
+				} ) {
+					name: "panel2"
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label1"
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/user.png" )
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "txtEmail"
+						"text": "onur@mail.com"
+						addEvent( new FormEvent( "java.awt.event.KeyListener", "keyReleased", "txtEmailKeyReleased", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JPasswordField" ) {
+						name: "txtPassword"
+						addEvent( new FormEvent( "java.awt.event.KeyListener", "keyReleased", "txtPasswordKeyReleased", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label3"
+						"text": "Password:"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label2"
+						"text": "E-mail:"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "lblError"
+						"foreground": sfield java.awt.Color red
+						"text": " "
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "btnLogin"
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/login.png" )
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnLoginClick", true ) )
+					} )
 				} )
-				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "txtEmail"
-					addEvent( new FormEvent( "java.awt.event.KeyListener", "keyReleased", "txtEmailKeyReleased", true ) )
-				} )
-				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label2"
-					"text": "E-mail"
-				} )
-				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label3"
-					"text": "Password:"
-				} )
-				add( new FormComponent( "javax.swing.JPasswordField" ) {
-					name: "txtPassword"
-					addEvent( new FormEvent( "java.awt.event.KeyListener", "keyReleased", "txtPasswordKeyReleased", true ) )
-				} )
-				add( new FormComponent( "javax.swing.JButton" ) {
-					name: "btnLogin"
-					"icon": new com.jformdesigner.model.SwingIcon( 0, "/login_btn.png" )
-					"background": new java.awt.Color( 73, 241, 157, 255 )
-					"horizontalAlignment": 10
-				} )
-				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "lblError"
-					"foreground": new java.awt.Color( 255, 51, 51, 255 )
-				} )
-			} )
-			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {space :p:117:p, comp label4:::p:137:p, space :::x}, seq t {space ::73:x, par l {seq t {comp label5:::p::p, space :p:94:p}, seq t {comp label6:::p:235:p, space :p:65:p}}}}"
-				"$verticalGroup": "par l {seq l {space :p:30:p, comp label4:::p:152:p, space :p:34:p, comp label5:::p:55:p, space :::p, comp label6:::p::p, space :::x}}"
-			} ) {
-				name: "panel2"
-				"background": new java.awt.Color( 94, 185, 155, 255 )
-				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label4"
-					"icon": new com.jformdesigner.model.SwingIcon( 0, "/globe.png" )
-				} )
-				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label5"
-					"text": "Global "
-					"font": new java.awt.Font( "Sitka Small", 3, 48 )
-					"foreground": new java.awt.Color( 135, 201, 242, 255 )
-				} )
-				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label6"
-					"text": "Technology"
-					"font": new java.awt.Font( "Sitka Small", 3, 36 )
-					"foreground": new java.awt.Color( 0, 112, 255, 255 )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq l {space :p:54:p, par l {par l:l {seq t {comp label5:::p::p, space :p:29:p}, comp label6::t:p:235:p}, seq l {space :p:51:p, comp label4:::p:137:p, space :p:47:p}}, space ::58:x}}"
+					"$verticalGroup": "par l {seq l {space :p:51:p, comp label4:::p:152:p, space :p:32:p, comp label5:::p:55:p, space :::p, comp label6:::p::p, space :::x}}"
+				} ) {
+					name: "panel3"
+					"background": new java.awt.Color( 94, 185, 155, 255 )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label4"
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/globe.png" )
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label5"
+						"text": "Global "
+						"font": new java.awt.Font( "Sitka Small", 3, 48 )
+						"foreground": new java.awt.Color( 135, 201, 242, 255 )
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label6"
+						"text": "Technology"
+						"font": new java.awt.Font( "Sitka Small", 3, 36 )
+						"foreground": new java.awt.Color( 0, 112, 255, 255 )
+					} )
 				} )
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 755, 415 )
+			"size": new java.awt.Dimension( 700, 500 )
 		} )
 	}
 }
-
