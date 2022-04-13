@@ -3,7 +3,7 @@ package utils;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
-public class Util {
+public class Util { //email formatinin dogrulugunu kontrol ederiz
     public static boolean isValidEmailAddress(String email) {
         boolean result = true;
         try {

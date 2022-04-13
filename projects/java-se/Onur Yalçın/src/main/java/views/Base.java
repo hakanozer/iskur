@@ -5,9 +5,7 @@ import java.awt.*;
 
 public class Base extends JFrame {
     @Override
-    public void setBackground(Color bgColor) {
-        super.getContentPane().setBackground(Color.lightGray);
+    public void setBackground(Color bgColor){
+        getContentPane().setBackground(Color.white);
     }
-
-    //tüm buttonları arka planını şu renkte yap vb bir standart yapıp tüm framelere uygulayabilirsin
 }

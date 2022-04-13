@@ -1,47 +1,28 @@
 package props;
 
 public class User {
-    private int uid;
-    private String name;
-    private  String surname;
+    private int uId;
+
+    public int getuId() {
+        return uId;
+    }
+
+    public void setuId(int uId) {
+        this.uId = uId;
+    }
+
     private String email;
     private String password;
 
-    public User(){
-
+    public User() {
     }
 
-    public User(int uid, String name, String surname, String email, String password) {
-        this.uid = uid;
-        this.name = name;
-        this.surname = surname;
+    public User(String email, String password) {
+
         this.email = email;
         this.password = password;
     }
 
-    public int getUid() {
-        return uid;
-    }
-
-    public void setUid(int uid) {
-        this.uid = uid;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
     public String getEmail() {
         return email;
     }
@@ -61,9 +42,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "uid=" + uid +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
+                "uId=" + uId +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 '}';

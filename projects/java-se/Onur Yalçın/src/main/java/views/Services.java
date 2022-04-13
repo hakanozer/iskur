@@ -1,15 +1,18 @@
 /*
- * Created by JFormDesigner on Thu Apr 07 18:52:12 TRT 2022
+ * Created by JFormDesigner on Thu Apr 07 18:53:20 TRT 2022
  */
 
 package views;
 
-import model.ServiceImpl;
-import model.UserImpl;
+import java.awt.event.*;
+
+import models.ServiceImpl;
+import models.UserImpl;
+import props.Customer;
 import props.Service;
+import utils.Util;
 
 import java.awt.*;
-import java.awt.event.*;
 import java.util.Locale;
 import javax.swing.*;
 import javax.swing.GroupLayout;
@@ -18,59 +21,151 @@ import javax.swing.GroupLayout;
  * @author unknown
  */
 public class Services extends Base {
-    ServiceImpl service=new ServiceImpl();
+    ServiceImpl service = new ServiceImpl();
     public Services() {
         initComponents();
-        lblName.setText(UserImpl.name);
-        tblCustomer.setModel(service.serviceCustomerTable(null));
+        lblName.setText("Merhaba, " + UserImpl.name);
+        tblServiceCustomer.setModel(service.serviceCustomerTable(null));
+        tblServiceService.setModel(service.serviceServiceTable());
     }
+    int row = -1; //tblCars.getSelectedRow();
+    int cid = 0;
+    int sid = 0;
+    int column = 0;
+    int scolumn = 0;
 
-    private Service fncDatavalidate() {
-        Service s = null;
-        int row = tblCustomer.getSelectedRow(); //hangi satırın seçildiğini burda yakalıyoruz.
-        int cid = (Integer) tblCustomer.getValueAt(row, 1); //getValueAt hep obje döndürür, Parantez içinde Integer yazarak Objeden int'e çevirdik.
-        String title = txtTitle.getText().toLowerCase(Locale.ROOT).trim();
-        String days = txtDays.getText().toLowerCase(Locale.ROOT).trim();
-        String detail = txtDetail.getText().toLowerCase(Locale.ROOT).trim();
-        String price = txtPrice.getText().toLowerCase(Locale.ROOT).trim();
-        if (row == -1) {
-            lblError.setText("You must select a customer from Customer Table");
-        } else if (title.equals("")) {
+    private Service fncDataValid(){
+        row = tblServiceCustomer.getSelectedRow();
+        String title=txtTitle.getText().trim();
+        String info=txtDetail.getText().trim();
+        int days= Integer.parseInt(txtDays.getText().trim());  //boşluk varsa al trimle sil
+        String date = txtDate.getText().trim();
+        int status = Integer.parseInt(txtStatus.getText().trim());
+        cid = Integer.valueOf(tblServiceCustomer.getModel().getValueAt(row,column).toString());
+
+        if (title.equals("")){
+            lblError.setText("Title is Empty!!!");
             txtTitle.requestFocus();
-            lblError.setText("Title is empty");
-        } else if (days.equals("")) {
+        }else if (info.equals("")){
+            lblError.setText("Surname is Empty!!!");
+            txtDetail.requestFocus();
+        }else if (days == 0){
+            lblError.setText("Days is Empty!!!");
             txtDays.requestFocus();
-            lblError.setText("Days is empty");
-        } else if (detail.equals("")) {
-            txtDetail.requestFocus();
-            lblError.setText("Detail is empty");
-        } else if (price.equals("")) {
-            txtDetail.requestFocus();
-            lblError.setText("Price is empty");
-        } else {
-            s = new Service(0, 0, null, null, 0, null, 0, 0);
-
         }
-        return s;
+        else if (date.equals("")){
+            lblError.setText("Date is Empty!!!");
+            txtDate.requestFocus();
+        }
+        else if (status > 3){
+            lblError.setText("Gecerli bir status degeri giriniz.");
+            txtStatus.requestFocus();
+        }
+        else {
+            lblError.setText("");
+            Service s = new Service(0,cid,title,info,days,date,status);
+            return s;
+        }
+        return null; //olumsuz halinde
+
     }
 
     private void thisWindowClosing(WindowEvent e) {
-        // TODO add your code here
         new Dashboard().setVisible(true);
     }
 
-    private void searchKeyReleased(KeyEvent e) {
+    private void saveCustomerButtonClick(ActionEvent e) {
         // TODO add your code here
-        String searchCustomer=txtSearch.getText().trim().toLowerCase(Locale.ROOT);
-        tblCustomer.setModel(service.serviceCustomerTable(searchCustomer));
+    }
+
+    private void txtCustomerSearchKeyReleased(KeyEvent e) {
+        String txtSearch = txtCustomerSearch.getText().trim();
+        tblServiceCustomer.setModel(service.serviceCustomerTable(txtSearch));
+    }
+
+    private void btnDeleteClick(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void btnCustomerUpdateClick(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void btnAddServiceClick(ActionEvent e) {
+        Service s = fncDataValid();
+        if(s!=null){
+            int status = service.serviceInsert(s);
+            if (status>0){
+                System.out.println("Ekleme basarili");
+                txtTitle.setText("");
+                txtDetail.setText("");
+                txtDate.setText("");
+                txtDays.setText("");
+                txtStatus.setText("");
+                tblServiceService.setModel(service.serviceServiceTable());
+            }
+            else {
+                if (status == -1){
+                    lblError.setText("E-mail or Phone have already used");
+                }
+                else {
+                    lblError.setText("Insert Error");
+                }
+            }
+        }
+    }
+
+    private void tblServiceServiceKeyReleased(KeyEvent e) {
+        rowVal();
+    }
+
+    private void tblServiceServiceMouseClicked(MouseEvent e) {
+        rowVal();
+    }
+    void rowVal(){/////////////
+        row = tblServiceService.getSelectedRow();
+        String title = (String) tblServiceService.getValueAt(row, 2);
+        String info = (String) tblServiceService.getValueAt(row, 3);
+        int days = (int) tblServiceService.getValueAt(row, 4);
+        String date = (String) tblServiceService.getValueAt(row, 5);
+        int status = (int) tblServiceService.getValueAt(row, 6);
+
+        txtTitle.setText(title);
+        txtDetail.setText(info);
+        txtDays.setText(String.valueOf(days));
+        txtDate.setText(date);
+        txtStatus.setText(String.valueOf(status));
 
     }
 
-    private void btnAddClickService(MouseEvent e) {
-        ServiceImpl si = new ServiceImpl();
-        Service s = fncDatavalidate();
-        if(s != null){
-            int status = si.serviceInsert(s);
+    private void btnServiceUpdateClick(ActionEvent e) {
+       Service s = fncDataValid();
+        if(row != -1 ) {
+            row = tblServiceService.getSelectedRow();
+            sid = Integer.valueOf(tblServiceService.getModel().getValueAt(row,scolumn).toString());
+            int answer = JOptionPane.showConfirmDialog(this, "Guncellemek istediginizden emin misniz?", "Guncelleme islemi", JOptionPane.YES_NO_OPTION);
+            if (answer == 0) {
+                service.serviceUpdate(s,sid);
+                tblServiceService.setModel(service.serviceServiceTable());
+                row = -1;
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Lutfen secim yapiniz.");
+        }
+    }
+
+    private void btnDeleteServiceClick(ActionEvent e) {
+        if(row != -1 ) {
+            row = tblServiceService.getSelectedRow();
+            sid = Integer.valueOf(tblServiceService.getModel().getValueAt(row,scolumn).toString());
+            int answer = JOptionPane.showConfirmDialog(this, "Silmek istediginizden emin miisniz?", "Silme islemi", JOptionPane.YES_NO_OPTION);
+            if(answer==0){
+                service.serviceDelete(sid);
+                tblServiceService.setModel(service.serviceServiceTable());
+                row = -1;
+            }
+        } else{
+            JOptionPane.showMessageDialog(this, "Lutfen secim yapiniz.");
         }
     }
 
@@ -78,24 +173,31 @@ public class Services extends Base {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         label1 = new JLabel();
         lblName = new JLabel();
-        label4 = new JLabel();
-        txtSearch = new JTextField();
+        label3 = new JLabel();
+        txtCustomerSearch = new JTextField();
         scrollPane1 = new JScrollPane();
-        tblCustomer = new JTable();
+        tblServiceCustomer = new JTable();
         panel1 = new JPanel();
-        label5 = new JLabel();
+        label4 = new JLabel();
         txtTitle = new JTextField();
+        label5 = new JLabel();
         txtDays = new JTextField();
         label6 = new JLabel();
-        label7 = new JLabel();
         scrollPane2 = new JScrollPane();
         txtDetail = new JTextArea();
         lblError = new JLabel();
-        btnAdd = new JButton();
-        txtPrice = new JTextField();
-        lblPricce = new JLabel();
+        scrollPane3 = new JScrollPane();
+        tblServiceService = new JTable();
+        btnServiceUpdate = new JButton();
+        btnDeleteService = new JButton();
+        btnAddService = new JButton();
+        label2 = new JLabel();
+        txtDate = new JTextField();
+        label7 = new JLabel();
+        txtStatus = new JTextField();
 
         //======== this ========
+        setResizable(false);
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -106,37 +208,41 @@ public class Services extends Base {
 
         //---- label1 ----
         label1.setText("Technical Service");
+        label1.setForeground(Color.black);
+        label1.setFont(new Font("Arial", Font.BOLD, 12));
 
         //---- lblName ----
         lblName.setText("text");
+        lblName.setForeground(Color.black);
+        lblName.setHorizontalAlignment(SwingConstants.RIGHT);
 
-        //---- label4 ----
-        label4.setText("Customer Search :");
+        //---- label3 ----
+        label3.setText("Customer Search:");
 
-        //---- txtSearch ----
-        txtSearch.addKeyListener(new KeyAdapter() {
+        //---- txtCustomerSearch ----
+        txtCustomerSearch.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                searchKeyReleased(e);
+                txtCustomerSearchKeyReleased(e);
             }
         });
 
         //======== scrollPane1 ========
         {
-            scrollPane1.setViewportView(tblCustomer);
+            scrollPane1.setViewportView(tblServiceCustomer);
         }
 
         //======== panel1 ========
         {
 
+            //---- label4 ----
+            label4.setText("Title:");
+
             //---- label5 ----
-            label5.setText("Title :");
+            label5.setText("Days:");
 
             //---- label6 ----
-            label6.setText("Days :");
-
-            //---- label7 ----
-            label7.setText("Detail :");
+            label6.setText("Detay");
 
             //======== scrollPane2 ========
             {
@@ -144,77 +250,120 @@ public class Services extends Base {
             }
 
             //---- lblError ----
-            lblError.setForeground(new Color(255, 51, 51));
+            lblError.setForeground(Color.red);
+            lblError.setText(" ");
 
-            //---- btnAdd ----
-            btnAdd.setText("Add");
-            btnAdd.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    btnAddClickService(e);
-                }
-            });
+            //======== scrollPane3 ========
+            {
 
-            //---- lblPricce ----
-            lblPricce.setText("Price");
+                //---- tblServiceService ----
+                tblServiceService.addKeyListener(new KeyAdapter() {
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+                        tblServiceServiceKeyReleased(e);
+                    }
+                });
+                tblServiceService.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        tblServiceServiceMouseClicked(e);
+                    }
+                });
+                scrollPane3.setViewportView(tblServiceService);
+            }
+
+            //---- btnServiceUpdate ----
+            btnServiceUpdate.setIcon(new ImageIcon(getClass().getResource("/updateButtonIcon.png")));
+            btnServiceUpdate.addActionListener(e -> btnServiceUpdateClick(e));
+
+            //---- btnDeleteService ----
+            btnDeleteService.setIcon(new ImageIcon(getClass().getResource("/deleteIconButton.png")));
+            btnDeleteService.addActionListener(e -> btnDeleteServiceClick(e));
+
+            //---- btnAddService ----
+            btnAddService.setIcon(new ImageIcon(getClass().getResource("/addButtonIcon.png")));
+            btnAddService.addActionListener(e -> btnAddServiceClick(e));
+
+            //---- label2 ----
+            label2.setText("Date");
+
+            //---- label7 ----
+            label7.setText("Status");
 
             GroupLayout panel1Layout = new GroupLayout(panel1);
             panel1.setLayout(panel1Layout);
             panel1Layout.setHorizontalGroup(
                 panel1Layout.createParallelGroup()
-                    .addComponent(btnAdd, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addGap(205, 205, 205)
+                        .addComponent(btnAddService, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
+                        .addGap(72, 72, 72)
+                        .addComponent(btnServiceUpdate, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
+                        .addGap(71, 71, 71)
+                        .addComponent(btnDeleteService, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(panel1Layout.createParallelGroup()
+                            .addComponent(label4, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label6, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(panel1Layout.createParallelGroup()
                             .addGroup(panel1Layout.createSequentialGroup()
-                                .addGroup(panel1Layout.createParallelGroup()
-                                    .addComponent(label7)
-                                    .addComponent(label5))
-                                .addGap(18, 18, 18)
-                                .addGroup(panel1Layout.createParallelGroup()
-                                    .addComponent(lblError, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblError, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(104, 104, 104))
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(scrollPane2, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                    .addComponent(txtTitle, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
+                                .addGap(40, 40, 40)
+                                .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(label5, GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+                                    .addComponent(label2, GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtDays, GroupLayout.PREFERRED_SIZE, 247, GroupLayout.PREFERRED_SIZE)
                                     .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                                        .addComponent(txtTitle, GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(label6)
+                                        .addGap(6, 6, 6)
+                                        .addComponent(txtDate)
                                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtDays, GroupLayout.PREFERRED_SIZE, 286, GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(scrollPane2, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 618, Short.MAX_VALUE)))
-                            .addGroup(panel1Layout.createSequentialGroup()
-                                .addComponent(lblPricce, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE)
-                                .addGap(42, 42, 42)
-                                .addComponent(txtPrice, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 395, Short.MAX_VALUE)))
-                        .addContainerGap())
+                                        .addComponent(label7)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtStatus, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(scrollPane3))
             );
             panel1Layout.setVerticalGroup(
                 panel1Layout.createParallelGroup()
-                    .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                        .addContainerGap(38, Short.MAX_VALUE)
-                        .addGroup(panel1Layout.createParallelGroup()
-                            .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                                .addComponent(label6)
-                                .addGap(14, 14, 14))
-                            .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                                .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                    .addComponent(label5)
-                                    .addComponent(txtTitle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(panel1Layout.createSequentialGroup()
-                                .addComponent(txtDays, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)))
-                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(label7)
-                            .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(lblError, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                            .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(label5, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtDays, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(label4, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtTitle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAdd)
+                        .addGroup(panel1Layout.createParallelGroup()
+                            .addComponent(label6, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(label2)
+                                .addComponent(txtStatus, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(label7)
+                                .addComponent(txtDate, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblPricce)
-                            .addComponent(txtPrice, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                        .addGap(11, 11, 11))
+                        .addGroup(panel1Layout.createParallelGroup()
+                            .addComponent(btnAddService)
+                            .addComponent(btnServiceUpdate)
+                            .addComponent(btnDeleteService))
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(scrollPane3, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
+                        .addGap(319, 319, 319)
+                        .addComponent(lblError, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE))
             );
         }
 
@@ -222,37 +371,39 @@ public class Services extends Base {
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup()
+                .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(label1, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE)
+                    .addGap(359, 359, 359)
+                    .addComponent(lblName, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE))
                 .addGroup(contentPaneLayout.createSequentialGroup()
                     .addContainerGap()
                     .addGroup(contentPaneLayout.createParallelGroup()
                         .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addComponent(label1, GroupLayout.PREFERRED_SIZE, 404, GroupLayout.PREFERRED_SIZE)
-                            .addGap(36, 36, 36)
-                            .addComponent(lblName, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addComponent(label4)
-                            .addGap(18, 18, 18)
-                            .addComponent(txtSearch))
-                        .addComponent(panel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(scrollPane1))
+                            .addComponent(label3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtCustomerSearch, GroupLayout.PREFERRED_SIZE, 579, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(scrollPane1)
+                        .addComponent(panel1, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addContainerGap())
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
                 .addGroup(contentPaneLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(label1)
+                    .addGroup(contentPaneLayout.createParallelGroup()
+                        .addGroup(contentPaneLayout.createSequentialGroup()
+                            .addGap(2, 2, 2)
+                            .addComponent(label1))
                         .addComponent(lblName))
                     .addGap(18, 18, 18)
                     .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(label4)
-                        .addComponent(txtSearch, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addGap(18, 18, 18)
-                    .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCustomerSearch, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(label3, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap())
+                    .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 143, GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(panel1, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(19, Short.MAX_VALUE))
         );
         pack();
         setLocationRelativeTo(getOwner());
@@ -262,21 +413,27 @@ public class Services extends Base {
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     private JLabel label1;
     private JLabel lblName;
-    private JLabel label4;
-    private JTextField txtSearch;
+    private JLabel label3;
+    private JTextField txtCustomerSearch;
     private JScrollPane scrollPane1;
-    private JTable tblCustomer;
+    private JTable tblServiceCustomer;
     private JPanel panel1;
-    private JLabel label5;
+    private JLabel label4;
     private JTextField txtTitle;
+    private JLabel label5;
     private JTextField txtDays;
     private JLabel label6;
-    private JLabel label7;
     private JScrollPane scrollPane2;
     private JTextArea txtDetail;
     private JLabel lblError;
-    private JButton btnAdd;
-    private JTextField txtPrice;
-    private JLabel lblPricce;
+    private JScrollPane scrollPane3;
+    private JTable tblServiceService;
+    private JButton btnServiceUpdate;
+    private JButton btnDeleteService;
+    private JButton btnAddService;
+    private JLabel label2;
+    private JTextField txtDate;
+    private JLabel label7;
+    private JTextField txtStatus;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
