@@ -6,6 +6,8 @@ package appPack;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.HashMap;
+import java.util.UUID;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 
@@ -18,6 +20,23 @@ public class MainApp extends JFrame {
 
     public MainApp() {
         initComponents();
+        String uuid = UUID.randomUUID().toString();
+        System.out.println(uuid);
+        call();
+    }
+
+    public void call( ) {
+
+        HashMap<String, String> hm = new HashMap<>();
+        HashMap<EUser, String> hmx = new HashMap<>();
+
+        hmx.put(EUser.account, "Ali");
+        hmx.put(EUser.customer, "Veli");
+        hmx.put(EUser.person, "Hasan");
+        System.out.println(hmx);
+
+        System.out.println( hmx.get( EUser.person ) );
+
     }
 
     private void btnCallClick(ActionEvent e) {
