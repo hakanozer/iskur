@@ -1,5 +1,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="models.Result" %>
+<%@ page import="props.City" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -10,10 +11,11 @@
     <ul>
     <%
         Result result = new Result();
-        List<String> ls =  result.data();
-        for ( String item : ls ) {
+        List<City> ls =  result.data();
+        for ( City item : ls ) {
     %>
-        <li> <%=item%> </li>
+        <!-- açıklama satırı !-->
+        <li> <a href="detail.jsp?city=<%=item.getCid()%>"> <%=item.getName()%> </a> </li>
     <%}%>
     </ul>
 </body>
