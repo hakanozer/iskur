@@ -8,7 +8,7 @@
     <%
         String city = request.getParameter("city");
         Result result = new Result();
-        String dt =  result.single(city, response);
+        String dt = result.single(city, response);
     %>
     <h2> Detail Page - <%=dt%> </h2>
 </body>
