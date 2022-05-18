@@ -5,9 +5,11 @@ import com.works.repostories.ProductRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
+@RequestMapping("/product")
 public class ProductRestController {
 
     final ProductRepository pRepo;
@@ -15,7 +17,7 @@ public class ProductRestController {
         this.pRepo = pRepo;
     }
 
-    @PostMapping("/productSave")
+    @PostMapping("/save")
     public Map<String, Object> saveProduct(@RequestBody Productx pro) {
         Map<String, Object> hm = new LinkedHashMap<>();
         Productx pr = pRepo.save(pro); // insert
@@ -23,7 +25,7 @@ public class ProductRestController {
         return hm;
     }
 
-    @GetMapping("/productList")
+    @GetMapping("/list")
     public Map<String, Object> saveList() {
         Map<String, Object> hm = new LinkedHashMap<>();
         hm.put("result", pRepo.findAll() );
@@ -31,7 +33,7 @@ public class ProductRestController {
     }
 
 
-    @DeleteMapping("/productDelete")
+    @DeleteMapping("/delete")
     public Map<String, Object> productDelete( @RequestParam int pid ) {
         Map<String, Object> hm = new LinkedHashMap<>();
         try {
@@ -40,6 +42,35 @@ public class ProductRestController {
         }catch (Exception ex) {
             hm.put("result", false);
         }
+        return hm;
+    }
+
+    @PutMapping("/update")
+    public Map<String, Object> productUpdate( @RequestBody Productx pro ) {
+        Map<String, Object> hm = new LinkedHashMap<>();
+        try {
+            Productx p = pRepo.getById(pro.getPid());
+            if ( p.getPid() > 0 ) {
+                pRepo.saveAndFlush(pro);
+                hm.put("status", true);
+                hm.put("result", pro);
+            }else {
+                hm.put("status", false);
+                hm.put("message", "Kayıt hatası");
+            }
+        }catch (Exception ex) {
+            hm.put("status", false);
+            hm.put("message", ex.getMessage());
+        }
+        return hm;
+    }
+
+
+    @GetMapping("/search")
+    public Map<String, Object> search( @RequestParam String q ) {
+        Map<String, Object> hm = new LinkedHashMap<>();
+        List<Productx> ls = pRepo.findByTitleContains(q);
+        hm.put("result", ls );
         return hm;
     }
 
