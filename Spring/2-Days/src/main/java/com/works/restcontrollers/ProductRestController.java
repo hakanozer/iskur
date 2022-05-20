@@ -21,6 +21,7 @@ public class ProductRestController {
     public Map<String, Object> saveProduct(@RequestBody Productx pro) {
         Map<String, Object> hm = new LinkedHashMap<>();
         Productx pr = pRepo.save(pro); // insert
+        pRepo.findByTitleEqualsAndDetailIsLike(null, "");
         hm.put("result", pr);
         return hm;
     }
