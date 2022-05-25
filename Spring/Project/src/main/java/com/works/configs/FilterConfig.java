@@ -27,7 +27,7 @@ public class FilterConfig implements Filter {
         System.out.println(ip + " " + url + " " + info);
 
         if ( ip.equals("0:0:0:0:0:0:0:1")) {
-            res.sendError(401);
+            //res.sendError(401);
         }
         filterChain.doFilter(req, res);
     }
