@@ -1,5 +1,6 @@
 package com.works.restcontrollers;
 
+import com.works.entities.JWTLogin;
 import com.works.entities.JWTUser;
 import com.works.services.JWTUserDetailService;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,11 @@ public class JWTUserRestController {
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody JWTUser jwtUser) {
         return jwtUserDetailService.register(jwtUser);
+    }
+
+    @PostMapping("/auth")
+    public ResponseEntity auth(@RequestBody JWTLogin jwtLogin) {
+        return jwtUserDetailService.auth(jwtLogin);
     }
 
 
