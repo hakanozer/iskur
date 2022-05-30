@@ -1,7 +1,7 @@
 package com.works.configs;
 
+import com.works.services.JWTUserDetailService;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpStatus;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +10,11 @@ import java.io.IOException;
 
 @Configuration
 public class FilterConfig implements Filter {
+
+    final JWTUserDetailService jwtUserDetailService;
+    public FilterConfig(JWTUserDetailService jwtUserDetailService) {
+        this.jwtUserDetailService = jwtUserDetailService;
+    }
 
     @Override
     public void init(javax.servlet.FilterConfig filterConfig) throws ServletException {
@@ -28,6 +33,7 @@ public class FilterConfig implements Filter {
         if ( ip.equals("0:0:0:0:0:0:0:1")) {
             //res.sendError(401);
         }
+        jwtUserDetailService.info();
         filterChain.doFilter(req, res);
     }
 
