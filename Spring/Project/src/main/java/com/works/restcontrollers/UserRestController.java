@@ -22,7 +22,7 @@ public class UserRestController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity save(@Valid @RequestBody User user){
+    public ResponseEntity save( @Valid @RequestBody User user ){
         return uService.save(user);
     }
 
@@ -41,6 +41,7 @@ public class UserRestController {
         return uService.updateUser(user);
     }
 
+    /*
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Map handler( MethodArgumentNotValidException ex ) {
@@ -59,6 +60,7 @@ public class UserRestController {
         hm.put(REnum.error, lss);
         return hm;
     }
+     */
 
 
 }
