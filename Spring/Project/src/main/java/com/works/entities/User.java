@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank;
 
 @Entity
 @Data
-public class User {
+public class User extends Base {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
