@@ -1,6 +1,7 @@
 package com.works.services;
 
 import com.works.entities.User;
+import com.works.repositories.UserJoinRepository;
 import com.works.repositories.UserRepository;
 import com.works.utils.REnum;
 import org.springframework.http.HttpHeaders;
@@ -8,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.sql.Connection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -17,7 +17,9 @@ import java.util.Optional;
 public class UserService {
 
     final UserRepository uRepo;
-    public UserService(UserRepository uRepo) {
+    final UserJoinRepository uJoinRepo;
+    public UserService(UserRepository uRepo, UserJoinRepository uJoinRepo) {
+        this.uJoinRepo = uJoinRepo;
         System.out.println("UserService Call");
         this.uRepo = uRepo;
     }
@@ -44,6 +46,7 @@ public class UserService {
         Map<REnum,Object> hm = new LinkedHashMap<>();
         hm.put(REnum.status,true);
         hm.put(REnum.result, uRepo.findAll());
+        hm.put( REnum.error, uJoinRepo.userJoin(1) );
 
         return new  ResponseEntity(hm, HttpStatus.OK);
     }
