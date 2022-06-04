@@ -5,12 +5,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     final JwtFilter jwtFilter;
@@ -30,17 +34,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests() // giriş rolleri ile çalış
-                .antMatchers("/register", "/auth").permitAll()
+                .cors()
+                .and()
+                .csrf()
+                .disable()
+                .headers()
+                .frameOptions()
+                .deny()
+                .and()
+                .authorizeRequests().antMatchers(AUTH_WHITELIST).permitAll()
                 .antMatchers("/product/**").hasRole("user")
                 .antMatchers("/note/**").hasRole("admin")
                 .antMatchers("/sales/**").hasRole("customer")
                 .and()
-                .csrf().disable()
-                .formLogin().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class );
-
+                http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class );
     }
 
     @Bean
@@ -48,6 +56,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected AuthenticationManager authenticationManager() throws Exception {
         return super.authenticationManager();
     }
+
+    private static final String[] AUTH_WHITELIST = {
+            "/auth",
+            "/register",
+            "/v2/api-docs",
+            "/swagger-resources",
+            "/swagger-resources/**",
+            "/configuration/ui",
+            "/configuration/security",
+            "/swagger-ui.html",
+            "/webjars/**",
+            // -- Swagger UI v3 (OpenAPI)
+            "/v3/api-docs/**",
+            "/swagger-ui/**"
+    };
+
+
 
     /*
     urunler -> user
@@ -60,4 +85,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     zehra@mail.com -> user, admin
 
      */
+
+
 }
