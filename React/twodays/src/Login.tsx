@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { userLogin } from './Services';
 
 
 function App() {
@@ -10,10 +11,23 @@ function App() {
   // useState
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [loginError, setLoginError] = useState(false)
+  const [loginMessage, setLoginMessage] = useState('')
   // arrow function
   const fncSend = (evt:React.FormEvent) => {
     evt.preventDefault()
-    console.log("fncSend Call", email, password)
+    userLogin(email, password).then( res => {
+      const user = res.data.user[0]
+      const durum = user.durum
+      const mesaj = user.mesaj
+      setLoginMessage( mesaj )
+      if ( durum ) {
+        alert( mesaj )
+      }else {
+        //alert( mesaj )
+        setLoginError(true)
+      }
+    })
   }
 
 
@@ -23,6 +37,12 @@ function App() {
         <div className='col-sm-4'></div>
         <div className='col-sm-4'>
           <h1>User Login</h1>
+          
+            <div style={{ display: loginError === true ? 'block' : 'none'  }} className="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>Error!</strong> { loginMessage }
+              <button type="button" className="btn-close" aria-label="Close" onClick={(evt) => setLoginError(false)}  ></button>
+            </div>
+          
           <form onSubmit={fncSend}>
             <div className='mt-3'>
               <input onChange={(evt) => setEmail(evt.target.value) } type='email' className='form-control' placeholder='E-Mail' />
