@@ -22,7 +22,9 @@ function App() {
       const mesaj = user.mesaj
       setLoginMessage( mesaj )
       if ( durum ) {
-        alert( mesaj )
+        const stData = JSON.stringify( user.bilgiler! )
+        sessionStorage.setItem("user", stData)
+        navigate('/dashboard')
       }else {
         //alert( mesaj )
         setLoginError(true)
